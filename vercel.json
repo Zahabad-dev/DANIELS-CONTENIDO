@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/guiones",
+      "dest": "/guiones_wolf_daniels.html"
+    },
+    {
+      "src": "/linea-visual",
+      "dest": "/selector_linea_visual_wolf.html"
+    },
+    {
+      "handle": "filesystem"
+    }
+  ]
+}
