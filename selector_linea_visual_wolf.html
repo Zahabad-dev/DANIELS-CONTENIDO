@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Línea Visual — Wolf Daniels Maktub</title>
+<title>Línea Visual — Wolf Daniels & Maktub</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -158,7 +158,7 @@
 <!-- HEADER -->
 <div class="header">
   <div class="header-top">
-    <div class="logo">🐺 WOLF DANIELS MAKTUB</div>
+    <div class="logo">🐺 WOLF DANIELS & MAKTUB</div>
     <button class="reset-btn" onclick="resetAll()">↺ LIMPIAR SELECCIÓN</button>
   </div>
   <h1>LÍNEA VISUAL — <em>ELIGE TUS 7</em></h1>
@@ -286,7 +286,7 @@ function resetAll() {
 function buildMsg() {
   const nums = selected.map(i => String(i+1).padStart(2,'0'));
   const details = selected.map(i => `  • ${TITLES[i]}`).join('\n');
-  return `🐺 *WOLF DANIELS MAKTUB*\n*Línea Visual — Selección de Imágenes*\n\nHola, estas son las ${MAX} imágenes seleccionadas para la campaña:\n\n${details}\n\n📋 Números: ${nums.join(', ')}\n\n_Enviado desde el selector de Black Sheep Agencia_`;
+  return `🐺 *WOLF DANIELS & MAKTUB*\n*Línea Visual — Selección de Imágenes*\n\nHola, estas son las ${MAX} imágenes seleccionadas para la campaña:\n\n${details}\n\n📋 Números: ${nums.join(', ')}\n\n_Enviado desde el selector de Black Sheep Agencia_`;
 }
 
 function showToast() {
