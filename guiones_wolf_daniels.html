@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guiones de Contenido — Wolf Daniels Maktub</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --gold: #F5C518;
+    --white: #f5f5f0;
+    --red: #E03030;
+    --gray: #141414;
+    --gray2: #1e1e1e;
+    --gray3: #2a2a2a;
+    --green: #2ecc71;
+    --blue: #3a86ff;
+    --purple: #9b5de5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  .nav {
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #1e1e1e;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    z-index: 100;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--gold);
+    padding: 20px 24px 20px 0;
+    border-right: 1px solid #222;
+    margin-right: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .nav a {
+    color: #555;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 20px 16px;
+    white-space: nowrap;
+    transition: color 0.2s;
+    flex-shrink: 0;
+  }
+  .nav a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    padding: 100px 6% 80px;
+    border-bottom: 1px solid #1a1a1a;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: 'WOLF';
+    position: absolute;
+    right: -20px;
+    bottom: -40px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 220px;
+    color: rgba(245,197,24,0.03);
+    pointer-events: none;
+    letter-spacing: 10px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gray2);
+    border: 1px solid #2a2a2a;
+    border-radius: 2px;
+    padding: 6px 16px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 8vw, 110px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 em {
+    color: var(--gold);
+    font-style: normal;
+    display: block;
+  }
+
+  .hero-sub {
+    color: #666;
+    font-size: 15px;
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    padding: 20px 32px;
+    border: 1px solid #1e1e1e;
+    text-align: center;
+    min-width: 120px;
+  }
+
+  .stat .n {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat .l {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* PILLARS */
+  .pillar-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid #1a1a1a;
+    padding: 0 6%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .pillar-tabs::-webkit-scrollbar { display: none; }
+
+  .ptab {
+    padding: 20px 28px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: #444;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .ptab.p1 { border-color: var(--gold); color: var(--gold); }
+
+  /* SECTION */
+  .section {
+    padding: 72px 6%;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .sec-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .sec-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .sec-title span {
+    color: var(--gold);
+  }
+
+  .sec-desc {
+    color: #666;
+    font-size: 14px;
+    max-width: 400px;
+    line-height: 1.7;
+  }
+
+  /* REEL CARD */
+  .reel-card {
+    background: var(--gray);
+    border: 1px solid #1e1e1e;
+    margin-bottom: 24px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .reel-card:hover { border-color: #333; }
+
+  .reel-header {
+    padding: 24px 32px;
+    border-bottom: 1px solid #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .reel-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    color: #444;
+    letter-spacing: 3px;
+  }
+
+  .reel-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: var(--white);
+    flex: 1;
+  }
+
+  .reel-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tag-pill {
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 4px 12px;
+    border-radius: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .tag-transparencia { background: rgba(245,197,24,0.12); color: var(--gold); }
+  .tag-social { background: rgba(46,204,113,0.12); color: var(--green); }
+  .tag-autoridad { background: rgba(58,134,255,0.12); color: var(--blue); }
+  .tag-institucional { background: rgba(155,93,229,0.12); color: var(--purple); }
+
+  .reel-body {
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  @media (max-width: 768px) {
+    .reel-body { grid-template-columns: 1fr; }
+  }
+
+  .reel-col-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .reel-col-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #1e1e1e;
+  }
+
+  /* SCRIPT BLOCK */
+  .script-block {
+    background: var(--gray2);
+    border-left: 3px solid var(--gold);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .script-time {
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+
+  .script-action {
+    font-size: 11px;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .script-text {
+    font-size: 15px;
+    color: var(--white);
+    line-height: 1.7;
+    font-weight: 500;
+  }
+
+  /* PROD NOTES */
+  .prod-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+  }
+
+  .prod-note:last-child { border-bottom: none; }
+
+  .prod-note .icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* CAPTION BOX */
+  .caption-box {
+    background: var(--gray2);
+    border: 1px solid #2a2a2a;
+    padding: 20px 24px;
+    margin-top: 16px;
+  }
+
+  .caption-box .cap-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #555;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .caption-box p {
+    font-size: 13px;
+    color: #aaa;
+    line-height: 1.8;
+    white-space: pre-wrap;
+  }
+
+  /* POST CARDS */
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .post-card {
+    background: var(--gray);
+    border: 1px solid #1e1e1e;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .post-card:hover { border-color: #333; }
+
+  .post-thumb {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .post-thumb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+  }
+
+  .thumb-transparencia { background: #1a1600; color: var(--gold); }
+  .thumb-social { background: #0d1f14; color: var(--green); }
+  .thumb-autoridad { background: #0d1426; color: var(--blue); }
+
+  .post-content { padding: 24px; }
+
+  .post-num {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #444;
+    margin-bottom: 8px;
+  }
+
+  .post-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .post-type-badge {
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    margin-bottom: 16px;
+    display: inline-block;
+  }
+
+  .post-headline {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .post-body-text {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    white-space: pre-wrap;
+  }
+
+  .post-design-note {
+    background: var(--gray2);
+    border-left: 2px solid #333;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* STORIES */
+  .stories-flow {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .story-card {
+    width: 180px;
+    flex-shrink: 0;
+    background: var(--gray);
+    border: 1px solid #1e1e1e;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  @media (max-width: 600px) {
+    .story-card { width: calc(50% - 8px); }
+  }
+
+  .story-card:hover { border-color: #333; }
+
+  .story-screen {
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+  }
+
+  .story-day {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+  }
+
+  .story-num {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    opacity: 0.15;
+  }
+
+  .story-emoji { font-size: 32px; margin-bottom: 12px; }
+
+  .story-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .story-sub {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.5;
+  }
+
+  .story-s1 { background: linear-gradient(135deg, #1a1300, #2a1f00); }
+  .story-s2 { background: linear-gradient(135deg, #0d1a0d, #0a120a); }
+  .story-s3 { background: linear-gradient(135deg, #0d1020, #070c1a); }
+  .story-s4 { background: linear-gradient(135deg, #1a0d00, #120900); }
+  .story-s5 { background: linear-gradient(135deg, #1a1300, #2a1f00); }
+  .story-s6 { background: linear-gradient(135deg, #0d1a0d, #0a120a); }
+  .story-s7 { background: linear-gradient(135deg, #0d1020, #070c1a); }
+  .story-s8 { background: linear-gradient(135deg, #1a0a0a, #120000); }
+  .story-s9 { background: linear-gradient(135deg, #1a1300, #2a1f00); }
+  .story-s10 { background: linear-gradient(135deg, #0d1a0d, #0a120a); }
+  .story-s11 { background: linear-gradient(135deg, #0d1020, #070c1a); }
+  .story-s12 { background: linear-gradient(135deg, #1a0a1a, #12001a); }
+
+  .story-info {
+    padding: 14px 16px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .story-type {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #444;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .story-desc {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  .story-cta {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    padding: 24px 6%;
+    border-bottom: 1px solid #111;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .div-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: #111;
+    line-height: 1;
+  }
+
+  .div-info h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+
+  .div-info p {
+    font-size: 13px;
+    color: #555;
+  }
+
+  /* VISUAL REF */
+  .visual-ref {
+    margin-top: 20px;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 16px;
+  }
+
+  .vr-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #444;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .vr-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #1a1a1a;
+  }
+
+  .vr-imgs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .vr-img-wrap {
+    position: relative;
+    overflow: hidden;
+    flex: 1;
+    min-width: 100px;
+    max-width: 200px;
+    background: #111;
+  }
+
+  .vr-img-wrap img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    display: block;
+    opacity: 0.75;
+    transition: opacity 0.3s;
+    filter: grayscale(20%);
+  }
+
+  .vr-img-wrap:hover img { opacity: 1; filter: grayscale(0%); }
+
+  .vr-img-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    padding: 16px 8px 6px;
+    font-size: 9px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 1px;
+    line-height: 1.3;
+  }
+
+  .vr-note {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #555;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #1a1a1a;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer .f-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--gold);
+  }
+
+  footer span {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 2px;
+  }
+
+  .visual-ref { margin-top:20px; border-top:1px solid #1a1a1a; padding-top:16px; }
+  .vr-label { font-size:9px; letter-spacing:3px; color:#555; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+  .vr-label::after { content:''; flex:1; height:1px; background:#1a1a1a; }
+  .vr-imgs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px; }
+  .vr-img-wrap { position:relative; overflow:hidden; flex:1; min-width:90px; max-width:185px; background:#111; }
+  .vr-img-wrap img { width:100%; height:100px; object-fit:cover; display:block; opacity:.72; transition:opacity .3s; filter:grayscale(15%); }
+  .vr-img-wrap:hover img { opacity:1; filter:grayscale(0%); }
+  .vr-img-caption { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,.85)); padding:14px 7px 5px; font-size:9px; color:rgba(255,255,255,.55); letter-spacing:1px; }
+  .vr-note { font-size:11px; color:#555; font-style:italic; line-height:1.6; margin-top:6px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">🐺 WOLF DANIELS</div>
+  <a href="#reels">8 REELS</a>
+  <a href="#posts">8 BANNERS</a>
+  <a href="#stories">12 HISTORIAS</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">📋 PLAN DE CONTENIDO MENSUAL</div>
+  <h1>GUIONES &<br><em>CONTENIDO</em></h1>
+  <p class="hero-sub">Estrategia completa de contenido para Wolf Daniels Maktub. Objetivo: construir credibilidad y autoridad de marca en venta mayorista de camisas.</p>
+  <div class="stats-row">
+    <div class="stat"><div class="n">8</div><div class="l">Reels</div></div>
+    <div class="stat"><div class="n">8</div><div class="l">Banners</div></div>
+    <div class="stat"><div class="n">12</div><div class="l">Historias</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Pilares</div></div>
+    <div class="stat"><div class="n">28</div><div class="l">Piezas</div></div>
+  </div>
+</div>
+
+<!-- PILAR TABS -->
+<div class="pillar-tabs">
+  <div class="ptab p1">🏭 Pilar 1 — Transparencia</div>
+  <div class="ptab">🤝 Pilar 2 — Prueba Social</div>
+  <div class="ptab">🎓 Pilar 3 — Autoridad</div>
+  <div class="ptab">🏛️ Institucional</div>
+</div>
+
+<!-- ======= REELS ======= -->
+<div class="section-divider" id="reels">
+  <div class="div-num">01</div>
+  <div class="div-info">
+    <h2>LOS 8 REELS</h2>
+    <p>Guiones completos con tiempos, voz en off, notas de producción y caption para publicar</p>
+  </div>
+</div>
+
+<section class="section">
+
+  <!-- REEL 1 -->
+  <div class="reel-card">
+    <div class="reel-header">
+      <div>
+        <div class="reel-num">REEL 01</div>
+        <div class="reel-title">ASÍ NACE UNA CAMISA</div>
+      </div>
+      <div class="reel-meta">
+        <span class="tag-pill tag-transparencia">Transparencia</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">60 SEG</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">SONY III</span>
+      </div>
+    </div>
+    <div class="reel-body">
+      <div>
+        <div class="reel-col-label">GUIÓN / VOZ EN OFF</div>
+        <div class="script-block">
+          <div class="script-time">0:00 – 0:05 / GANCHO</div>
+          <div class="script-action">📸 Primer plano: manos tocando tela recién llegada, textura en close-up. Corte rápido a máquina de coser encendida.</div>
+          <div class="script-text">"¿Alguna vez te preguntaste cómo se hace una camisa de calidad desde cero? Esto es lo que no te muestran."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:05 – 0:25 / DESARROLLO</div>
+          <div class="script-action">🎬 Secuencia: rollo de tela, mesa de corte, trazo, tijeras, costura, plancha. Ritmo rápido, música industrial/fashion.</div>
+          <div class="script-text">"Primero elegimos la tela. Importamos directo para garantizar calidad desde el origen. Luego viene el trazo, el corte, la costura... cada paso lo hacemos nosotros."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:25 – 0:45 / CIERRE</div>
+          <div class="script-action">🎬 Mostrar camisa terminada, colgada, planchada. Luego transición a caja con 30 piezas empacadas.</div>
+          <div class="script-text">"El resultado: prendas de calidad real, hechas aquí, listas para tu negocio. Vendemos desde 30 piezas. Sin intermediarios. Sin sorpresas."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:45 – 0:60 / CTA</div>
+          <div class="script-action">🎬 Plano del logo o propietario a cámara, directo.</div>
+          <div class="script-text">"Escríbenos al WhatsApp y cotiza hoy. El primer pedido siempre sorprende."</div>
+        </div>
+        <div class="caption-box">
+          <div class="cap-label">📝 Caption para publicar</div>
+          <p>Esto es lo que pasa antes de que tu cliente se lleve una camisa 👕
+
+Desde la tela hasta el empaque, todo lo hacemos nosotros. Sin intermediarios, sin sorpresas.
+
+Fabricación propia 🏭
+Tela importada de calidad 🧵
+Desde 30 piezas al por mayor
+
+¿Quieres ver más del proceso? Déjanos un 🔥 en los comentarios.
+
+📲 Info al WhatsApp en bio
+
+#camisasmayoreo #fabricantemexicano #ropaalpormayor #confección #moda #textilmexicano #wolfdaniels</p>
+        </div>
+      </div>
+      <div>
+        <div class="reel-col-label">NOTAS DE PRODUCCIÓN</div>
+        <div class="prod-note"><span class="icon">🎥</span><span><strong>Cámara:</strong> Sony III en perfil S-Log para mejor colorización. Lente 24–70mm. Planos: picado, macro en texturas, travelling lateral en costura.</span></div>
+        <div class="prod-note"><span class="icon">💡</span><span><strong>Luz:</strong> Preferir luz natural de ventana o luz de tungsteno cálida. Evitar luz fría de fábrica. Si es necesario, llevar reflector plegable.</span></div>
+        <div class="prod-note"><span class="icon">🎵</span><span><strong>Música:</strong> Estilo fashion/industrial. Sugerencia: buscar en Epidemic Sound "fashion editorial uptempo". Ritmo debe coincidir con cortes de imagen.</span></div>
+        <div class="prod-note"><span class="icon">✂️</span><span><strong>Edición:</strong> Cortes rápidos de 1–2 seg en la parte de proceso. Texto en pantalla en puntos clave. Color grade cálido, contrastado.</span></div>
+        <div class="prod-note"><span class="icon">🎙️</span><span><strong>Audio:</strong> Voz en off con DJI Mic 3. Tono seguro, no vendedor. También funciona sin voz usando solo texto en pantalla.</span></div>
+        <div class="prod-note"><span class="icon">📱</span><span><strong>Formato:</strong> 9:16 vertical. Subtítulos en pantalla obligatorios (muchos ven sin audio).</span></div>
+      </div>
+    </div>
+
+    <div class="visual-ref" style="padding:20px 32px 24px; border-top:1px solid #1a1a1a; background:var(--gray);">
+      <div class="vr-label">🖼 REFERENCIA VISUAL — PLANOS A CAPTURAR</div>
+      <div class="vr-imgs">
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/4492077/pexels-photo-4492077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Costureras en producción</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/31031031/pexels-photo-31031031.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Fábrica activa — general</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/5908326/pexels-photo-5908326.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Textura tela — close-up</div></div>
+      </div>
+      <p class="vr-note">🎥 Línea activa + macro de telas. Luz cálida lateral. Sony III para tomas fijas, Pocket 3 para movimiento.</p>
+    </div>
+  </div>
+
+  <!-- REEL 2 -->
+  <div class="reel-card">
+    <div class="reel-header">
+      <div>
+        <div class="reel-num">REEL 02</div>
+        <div class="reel-title">LLEGÓ LA TELA — MIRA ESTO</div>
+      </div>
+      <div class="reel-meta">
+        <span class="tag-pill tag-transparencia">Transparencia</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">30 SEG</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">POCKET 3</span>
+      </div>
+    </div>
+    <div class="reel-body">
+      <div>
+        <div class="reel-col-label">GUIÓN / VOZ EN OFF</div>
+        <div class="script-block">
+          <div class="script-time">0:00 – 0:03 / GANCHO</div>
+          <div class="script-action">📸 Plano de cajas/rollos llegando al taller. La cámara sigue como si fuera algo emocionante.</div>
+          <div class="script-text">"Llegó el nuevo cargamento. ¿Quieres ver de qué estamos hablando?"</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:03 – 0:22 / DESARROLLO</div>
+          <div class="script-action">🎬 Unboxing estilo: abrir rollos, mostrar texturas en cámara lenta, deslizar la mano sobre la tela, mostrar distintos colores disponibles. Close-up en etiqueta o sello de calidad si hay.</div>
+          <div class="script-text">"Esta tela viene importada. La elegimos nosotros personalmente por su calidad. ¿Notas la textura? Así se siente diferencia real."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:22 – 0:30 / CTA</div>
+          <div class="script-action">🎬 Plano final con varios colores extendidos. Texto en pantalla con WhatsApp.</div>
+          <div class="script-text">"Disponible ya para tu siguiente pedido mayorista. Desde 30 piezas."</div>
+        </div>
+        <div class="caption-box">
+          <div class="cap-label">📝 Caption para publicar</div>
+          <p>Así se ve calidad real antes de convertirse en camisa 🧵✨
+
+Importamos la tela nosotros mismos porque la diferencia se nota desde el primer rollo.
+
+Colores nuevos disponibles para mayoreo 🎨
+Pedidos desde 30 piezas
+Entrega garantizada
+
+¿Cuál color te llama más? Coméntalo 👇
+
+📲 Cotiza por WhatsApp en bio
+
+#telasmayoreo #ropamayoreo #fabricante #textilmexicano #wolfdaniels #calidad</p>
+        </div>
+      </div>
+      <div>
+        <div class="reel-col-label">NOTAS DE PRODUCCIÓN</div>
+        <div class="prod-note"><span class="icon">🎥</span><span><strong>Cámara:</strong> DJI Pocket 3 ideal para este video — estabilización natural, fácil de mover entre telas. Modo 4K, slow motion en momentos de textura.</span></div>
+        <div class="prod-note"><span class="icon">💡</span><span><strong>Luz:</strong> Natural si es posible. El color real de la tela es el argumento de venta — no filtrar demasiado.</span></div>
+        <div class="prod-note"><span class="icon">🎵</span><span><strong>Música:</strong> Algo más chill y satisfactorio. Tipo unboxing premium. ASMR de tela puede funcionar mezclado.</span></div>
+        <div class="prod-note"><span class="icon">📌</span><span><strong>Tip extra:</strong> Mostrar la etiqueta de origen de la tela si es visible. Eso solo ya genera mucha credibilidad.</span></div>
+        <div class="prod-note"><span class="icon">📱</span><span><strong>Texto en pantalla:</strong> "Tela importada", "Alta calidad", "Disponible en mayoreo" sobre los planos.</span></div>
+      </div>
+    </div>
+
+    <div class="visual-ref" style="padding:20px 32px 24px; border-top:1px solid #1a1a1a; background:var(--gray);">
+      <div class="vr-label">🖼 REFERENCIA VISUAL — UNBOXING DE TELA</div>
+      <div class="vr-imgs">
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/6851135/pexels-photo-6851135.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Mano sobre tela</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/6634454/pexels-photo-6634454.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Colores disponibles</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/5908326/pexels-photo-5908326.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Detalle fibras</div></div>
+      </div>
+      <p class="vr-note">🎥 Pocket 3 modo macro. Slow motion al deslizar la mano. Luz natural para color real — ese es el argumento.</p>
+    </div>
+  </div>
+
+  <!-- REEL 3 -->
+  <div class="reel-card">
+    <div class="reel-header">
+      <div>
+        <div class="reel-num">REEL 03</div>
+        <div class="reel-title">50 PIEZAS LISTAS PARA ENTREGAR</div>
+      </div>
+      <div class="reel-meta">
+        <span class="tag-pill tag-transparencia">Transparencia</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">45 SEG</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">SONY III</span>
+      </div>
+    </div>
+    <div class="reel-body">
+      <div>
+        <div class="reel-col-label">GUIÓN / VOZ EN OFF</div>
+        <div class="script-block">
+          <div class="script-time">0:00 – 0:05 / GANCHO</div>
+          <div class="script-action">📸 Plano cenital de 50 camisas dobladas y ordenadas sobre una mesa. Impactante visualmente.</div>
+          <div class="script-text">"Pedido de 50 piezas. Listo. En tiempo. Sin excusas."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:05 – 0:30 / DESARROLLO</div>
+          <div class="script-action">🎬 Secuencia de empaque: doblar, bolsa individual, caja, etiquetar. Manos trabajando con ritmo.</div>
+          <div class="script-text">"Cada pieza revisada, doblada, empacada. Así preparamos cada pedido que sale de aquí. No importa si son 30 o 300 piezas, el proceso es el mismo."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:30 – 0:45 / CIERRE</div>
+          <div class="script-action">🎬 Caja sellada, lista. Plano del logo de Wolf Daniels o sello en la caja.</div>
+          <div class="script-text">"Este pedido va a su destino hoy. El tuyo puede ser el siguiente. Escríbenos."</div>
+        </div>
+        <div class="caption-box">
+          <div class="cap-label">📝 Caption para publicar</div>
+          <p>Pedido de 50 piezas: LISTO ✅📦
+
+No hay mejor argumento que ver el trabajo terminado. Cada prenda revisada, empacada y lista para tu negocio.
+
+¿Tienes dudas de si cumplimos? Mira el resultado 👆
+
+🏭 Fabricación propia
+📦 Pedidos desde 30 piezas
+🚚 Envíos a todo México
+
+Tu pedido puede ser el próximo 📲 Link en bio
+
+#mayoreo #camisas #pedidolisto #fabricante #ropamayoreo #negocio #wolfdaniels</p>
+        </div>
+      </div>
+      <div>
+        <div class="reel-col-label">NOTAS DE PRODUCCIÓN</div>
+        <div class="prod-note"><span class="icon">🎥</span><span><strong>Plano estrella:</strong> Cenital (desde arriba) de las 50 piezas alineadas. Este plano solo ya genera impacto brutal. Usa trípode + Sony III.</span></div>
+        <div class="prod-note"><span class="icon">✂️</span><span><strong>Edición:</strong> Poner contador en pantalla: "50/50" al final. Genera satisfacción y sensación de completitud.</span></div>
+        <div class="prod-note"><span class="icon">🎵</span><span><strong>Música:</strong> Energética pero profesional. Tipo motivacional/work. Ritmo que acompañe el empaque.</span></div>
+        <div class="prod-note"><span class="icon">📌</span><span><strong>Detalle importante:</strong> Si el cliente autoriza, mencionar que el pedido va para un negocio real. Eso multiplica la credibilidad.</span></div>
+      </div>
+    </div>
+
+    <div class="visual-ref" style="padding:20px 32px 24px; border-top:1px solid #1a1a1a; background:var(--gray);">
+      <div class="vr-label">🖼 REFERENCIA VISUAL — PEDIDO EMPACADO</div>
+      <div class="vr-imgs">
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Prendas dobladas apiladas</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Camisa fondo oscuro</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/31321016/pexels-photo-31321016.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Revisión calidad</div></div>
+      </div>
+      <p class="vr-note">🎥 PLANO ESTRELLA: cenital de las 50 piezas alineadas. Contador en edición '50/50 ✅'. Genera satisfacción visual brutal.</p>
+    </div>
+  </div>
+
+  <!-- REEL 4 -->
+  <div class="reel-card">
+    <div class="reel-header">
+      <div>
+        <div class="reel-num">REEL 04</div>
+        <div class="reel-title">TESTIMONIO — "PENSÉ QUE ERA FRAUDE"</div>
+      </div>
+      <div class="reel-meta">
+        <span class="tag-pill tag-social">Prueba Social</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">60 SEG</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">SONY III</span>
+      </div>
+    </div>
+    <div class="reel-body">
+      <div>
+        <div class="reel-col-label">GUIÓN (CLIENTE A CÁMARA)</div>
+        <div class="script-block">
+          <div class="script-time">0:00 – 0:05 / GANCHO</div>
+          <div class="script-action">📸 Cliente sentado/de pie, natural. Plano medio. Texto en pantalla: "La primera vez que compré..."</div>
+          <div class="script-text">Cliente: <em>"Honestamente, la primera vez que vi el precio mayorista pensé que algo andaba mal. Era demasiado bueno para ser verdad."</em></div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:05 – 0:40 / HISTORIA</div>
+          <div class="script-action">🎬 Cliente habla, intercalar planos B de su negocio usando las camisas, clientes suyos, etc.</div>
+          <div class="script-text">Cliente: <em>"Pedí mis primeras 30 piezas como prueba. Cuando llegó el pedido, la calidad me sorprendió. Desde entonces ya llevamos [X] pedidos. Mi clientela nota la diferencia."</em></div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:40 – 0:60 / RECOMENDACIÓN</div>
+          <div class="script-action">🎬 Cliente cierra mirando a cámara, directo y natural.</div>
+          <div class="script-text">Cliente: <em>"Si estás dudando de dar el primer pedido, yo fui el mismo. Solo hazlo. No te arrepientes."</em></div>
+        </div>
+        <div class="caption-box">
+          <div class="cap-label">📝 Caption para publicar</div>
+          <p>"Pensé que era fraude." 😅
+
+Eso nos dijo [Nombre del cliente] antes de hacer su primer pedido con nosotros. Hoy ya lleva [X] pedidos.
+
+La desconfianza es normal cuando compras mayoreo por primera vez. Por eso mostramos TODO: la fábrica, el proceso, el producto real.
+
+¿Tienes dudas? Escríbenos y te lo mostramos antes de que compres.
+
+📲 WhatsApp en bio
+
+#testimonio #mayoreo #camisas #confianza #wolfdaniels #fabricante</p>
+        </div>
+      </div>
+      <div>
+        <div class="reel-col-label">NOTAS DE PRODUCCIÓN</div>
+        <div class="prod-note"><span class="icon">🎙️</span><span><strong>Audio:</strong> DJI Mic 3 en solapa del cliente. Voz clara es lo más importante en este video. Sin música fuerte encima.</span></div>
+        <div class="prod-note"><span class="icon">🎥</span><span><strong>Plano:</strong> Natural, no muy producido. La autenticidad vende más que la perfección en testimonios.</span></div>
+        <div class="prod-note"><span class="icon">📌</span><span><strong>Preparación:</strong> Dar al cliente 3 preguntas guía antes: ¿Cómo llegaste? ¿Qué dudabas? ¿Qué pasó después? No leer respuestas, que sea fluido.</span></div>
+        <div class="prod-note"><span class="icon">✂️</span><span><strong>Subtítulos:</strong> Obligatorios y bien visibles. Este video se comparte mucho si toca una objeción real.</span></div>
+      </div>
+    </div>
+
+    <div class="visual-ref" style="padding:20px 32px 24px; border-top:1px solid #1a1a1a; background:var(--gray);">
+      <div class="vr-label">🖼 REFERENCIA VISUAL — ENTREVISTA DE CLIENTE</div>
+      <div class="vr-imgs">
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/31112215/pexels-photo-31112215.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Plano medio — persona a cámara</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/4492077/pexels-photo-4492077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Plano B — fábrica de fondo</div></div>
+      </div>
+      <p class="vr-note">🎥 Cliente natural. DJI Mic 3 en solapa. Fondo: su negocio o la fábrica. La autenticidad vende más que la producción perfecta.</p>
+    </div>
+  </div>
+
+  <!-- REEL 5 -->
+  <div class="reel-card">
+    <div class="reel-header">
+      <div>
+        <div class="reel-num">REEL 05</div>
+        <div class="reel-title">3 ERRORES AL COMPRAR ROPA AL MAYOREO</div>
+      </div>
+      <div class="reel-meta">
+        <span class="tag-pill tag-autoridad">Autoridad</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">45 SEG</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">POCKET 3</span>
+      </div>
+    </div>
+    <div class="reel-body">
+      <div>
+        <div class="reel-col-label">GUIÓN / VOZ EN OFF</div>
+        <div class="script-block">
+          <div class="script-time">0:00 – 0:05 / GANCHO</div>
+          <div class="script-action">📸 Propietario a cámara, directo. O texto animado en pantalla.</div>
+          <div class="script-text">"Si compras ropa al mayoreo, evita estos 3 errores. El tercero es el que más cuesta."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:05 – 0:15 / ERROR 1</div>
+          <div class="script-action">🎬 Texto en pantalla: "ERROR 1" + plano de tela mala vs buena.</div>
+          <div class="script-text">"Error 1: no pedir muestras antes del pedido grande. Siempre, siempre pide muestra física antes de comprometerte."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:15 – 0:25 / ERROR 2</div>
+          <div class="script-action">🎬 Texto en pantalla: "ERROR 2"</div>
+          <div class="script-text">"Error 2: comprarle a quien no te muestra su proceso. Si no ves la fábrica, no conoces el producto. Desconfía."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:25 – 0:38 / ERROR 3</div>
+          <div class="script-action">🎬 Texto en pantalla: "ERROR 3 — EL MÁS CARO"</div>
+          <div class="script-text">"Error 3: elegir solo por precio. La tela barata encoge, destiñe y hace que tu cliente no vuelva. El precio lo paga tu reputación."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:38 – 0:45 / CTA</div>
+          <div class="script-text">"Nosotros mandamos muestra gratis antes del primer pedido. Escríbenos."</div>
+        </div>
+        <div class="caption-box">
+          <div class="cap-label">📝 Caption para publicar</div>
+          <p>3 errores que te cuestan dinero al comprar ropa al mayoreo 🚨
+
+El tercero es el más común y el más caro.
+
+¿Ya los cometiste? Cuéntanos en comentarios 👇
+
+En Wolf Daniels mandamos muestra gratis antes de tu primer pedido. Así compras con seguridad.
+
+📲 Info al WhatsApp en bio
+
+#mayoreo #errores #ropamayoreo #consejo #negocio #tienda #wolfdaniels</p>
+        </div>
+      </div>
+      <div>
+        <div class="reel-col-label">NOTAS DE PRODUCCIÓN</div>
+        <div class="prod-note"><span class="icon">🎥</span><span><strong>Formato:</strong> Puede ser solo texto animado con voz en off. Rápido de producir con la Pocket 3 + DJI Mic.</span></div>
+        <div class="prod-note"><span class="icon">✂️</span><span><strong>Texto en pantalla:</strong> Grande, legible. "ERROR 1 ❌" en rojo. Genera retención porque la gente espera el siguiente error.</span></div>
+        <div class="prod-note"><span class="icon">📌</span><span><strong>Estrategia:</strong> Este tipo de contenido educativo se guarda y comparte mucho. Es el mejor para crecer seguidores nuevos.</span></div>
+      </div>
+    </div>
+
+    <div class="visual-ref" style="padding:20px 32px 24px; border-top:1px solid #1a1a1a; background:var(--gray);">
+      <div class="vr-label">🖼 REFERENCIA VISUAL — ESTILO EDUCATIVO</div>
+      <div class="vr-imgs">
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/5908326/pexels-photo-5908326.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Comparativa calidad tela</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Producto — camisa</div></div>
+      </div>
+      <p class="vr-note">🎥 Puede ser texto animado con voz en off. Fácil de producir. 'ERROR 1 ❌' en rojo = alto retención. El de mayor alcance orgánico.</p>
+    </div>
+  </div>
+
+  <!-- REEL 6 -->
+  <div class="reel-card">
+    <div class="reel-header">
+      <div>
+        <div class="reel-num">REEL 06</div>
+        <div class="reel-title">¿CÓMO RECONOCER TELA DE CALIDAD?</div>
+      </div>
+      <div class="reel-meta">
+        <span class="tag-pill tag-autoridad">Autoridad</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">45 SEG</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">POCKET 3 + MACRO</span>
+      </div>
+    </div>
+    <div class="reel-body">
+      <div>
+        <div class="reel-col-label">GUIÓN / VOZ EN OFF</div>
+        <div class="script-block">
+          <div class="script-time">0:00 – 0:05 / GANCHO</div>
+          <div class="script-action">📸 Mano apretando tela. Close-up extremo.</div>
+          <div class="script-text">"¿Sabes si la tela que estás comprando es realmente buena? Te enseño a saberlo en 3 segundos."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:05 – 0:35 / TRUCOS</div>
+          <div class="script-action">🎬 Demostración visual de cada prueba con la tela en cámara.</div>
+          <div class="script-text">"Uno: apriétala con el puño y suéltala. Si se arruga demasiado, mala calidad. Dos: ponla contra la luz. Si es muy transparente para lo que ofrece, hay trampa. Tres: huélela. Tela con olor a químico fuerte viene sin tratamiento correcto."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:35 – 0:45 / CTA</div>
+          <div class="script-text">"Nuestra tela pasa las tres pruebas. Y si no nos crees, pide tu muestra gratis."</div>
+        </div>
+        <div class="caption-box">
+          <div class="cap-label">📝 Caption para publicar</div>
+          <p>3 segundos para saber si una tela es buena o no 👀🧵
+
+Guarda esto antes de tu próximo pedido mayorista 📌
+
+¿Conocías estos trucos? 
+
+En nuestras telas ya los checamos nosotros por ti 😉
+
+📲 Cotiza al WhatsApp en bio
+
+#tela #calidad #truco #ropamayoreo #confeccion #wolfdaniels #fabricante</p>
+        </div>
+      </div>
+      <div>
+        <div class="reel-col-label">NOTAS DE PRODUCCIÓN</div>
+        <div class="prod-note"><span class="icon">🎥</span><span><strong>Planos clave:</strong> Macro/close-up de tela siendo apretada, contra la luz (backlight), y en general. La Pocket 3 con modo macro es perfecta.</span></div>
+        <div class="prod-note"><span class="icon">📌</span><span><strong>Estrategia:</strong> Contenido educativo-práctico. El "guarda esto" en el caption dispara saves, que mejoran el alcance orgánico.</span></div>
+      </div>
+    </div>
+
+    <div class="visual-ref" style="padding:20px 32px 24px; border-top:1px solid #1a1a1a; background:var(--gray);">
+      <div class="vr-label">🖼 REFERENCIA VISUAL — MACRO DE TELA</div>
+      <div class="vr-imgs">
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/6634454/pexels-photo-6634454.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Macro — fibras visibles</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/6851135/pexels-photo-6851135.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Prueba del apretón</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/5908326/pexels-photo-5908326.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Contra la luz</div></div>
+      </div>
+      <p class="vr-note">🎥 Pocket 3 modo macro es PERFECTA aquí. 3 demos físicas. El 'guarda esto' en caption dispara saves y alcance.</p>
+    </div>
+  </div>
+
+  <!-- REEL 7 -->
+  <div class="reel-card">
+    <div class="reel-header">
+      <div>
+        <div class="reel-num">REEL 07</div>
+        <div class="reel-title">UN DÍA EN LA FÁBRICA</div>
+      </div>
+      <div class="reel-meta">
+        <span class="tag-pill tag-transparencia">Transparencia</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">60 SEG</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">SONY III + POCKET 3</span>
+      </div>
+    </div>
+    <div class="reel-body">
+      <div>
+        <div class="reel-col-label">GUIÓN / VOZ EN OFF</div>
+        <div class="script-block">
+          <div class="script-time">0:00 – 0:05 / GANCHO</div>
+          <div class="script-action">📸 Llegada a la fábrica de mañana. Puerta abriéndose o luces encendiéndose.</div>
+          <div class="script-text">"Son las 8 AM y aquí ya está todo en marcha. Te muestro cómo es un día normal en nuestra fábrica."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:05 – 0:50 / DÍA</div>
+          <div class="script-action">🎬 Secuencia cronológica: máquinas encendiendo, costureras trabajando, control de calidad, empaque, pedidos listos. Estilo documental.</div>
+          <div class="script-text">"Primero preparamos los cortes del día... Aquí el área de costura, todo en movimiento... Control de calidad pieza por pieza... Y al final del día, los pedidos listos para salir."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:50 – 0:60 / CIERRE</div>
+          <div class="script-action">🎬 Plano final del exterior de la fábrica o del propietario.</div>
+          <div class="script-text">"Esto pasa cada día para que tu pedido llegue perfecto. ¿Tienes alguna duda de que somos reales?"</div>
+        </div>
+        <div class="caption-box">
+          <div class="cap-label">📝 Caption para publicar</div>
+          <p>Un día normal en nuestra fábrica 🏭
+
+Sin filtros, sin posados. Solo trabajo real.
+
+¿Todavía dudas de que existimos? 😄
+
+Fabricamos camisas de calidad y las vendemos al mayoreo desde 30 piezas.
+
+📲 Escríbenos, te mostramos más
+
+#fabricante #detrasdeltelón #ropamayoreo #camisas #wolfdaniels #mexico</p>
+        </div>
+      </div>
+      <div>
+        <div class="reel-col-label">NOTAS DE PRODUCCIÓN</div>
+        <div class="prod-note"><span class="icon">🎥</span><span><strong>Estilo:</strong> Documental/vlog. La Pocket 3 para movimientos naturales y el Sony III para tomas estáticas impactantes.</span></div>
+        <div class="prod-note"><span class="icon">💡</span><span><strong>Momento ideal:</strong> Filmar en el día con más actividad. Más personas trabajando = más credibilidad visual.</span></div>
+      </div>
+    </div>
+
+    <div class="visual-ref" style="padding:20px 32px 24px; border-top:1px solid #1a1a1a; background:var(--gray);">
+      <div class="vr-label">🖼 REFERENCIA VISUAL — DOCUMENTAL DE FÁBRICA</div>
+      <div class="vr-imgs">
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/31031031/pexels-photo-31031031.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Apertura fábrica</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/4492077/pexels-photo-4492077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Costureras produciendo</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/31321016/pexels-photo-31321016.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Control calidad</div></div>
+      </div>
+      <p class="vr-note">🎥 Filmar el día con más actividad: más personas = más credibilidad. Pocket 3 movimiento + Sony III estáticos.</p>
+    </div>
+  </div>
+
+  <!-- REEL 8 -->
+  <div class="reel-card">
+    <div class="reel-header">
+      <div>
+        <div class="reel-num">REEL 08</div>
+        <div class="reel-title">VIDEO INSTITUCIONAL — QUIÉNES SOMOS</div>
+      </div>
+      <div class="reel-meta">
+        <span class="tag-pill" style="background:rgba(155,93,229,0.12); color:var(--purple);">Institucional</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">60 SEG</span>
+        <span class="tag-pill" style="background:#1a1a1a; color:#666; font-size:10px; letter-spacing:2px; padding:4px 12px;">SONY III</span>
+      </div>
+    </div>
+    <div class="reel-body">
+      <div>
+        <div class="reel-col-label">GUIÓN / PROPIETARIO A CÁMARA</div>
+        <div class="script-block">
+          <div class="script-time">0:00 – 0:08 / PRESENTACIÓN</div>
+          <div class="script-action">📸 Propietario frente a la fábrica o dentro, profesional pero natural.</div>
+          <div class="script-text">"Hola, soy [Nombre], fundador de Wolf Daniels Maktub. Llevamos [X años] fabricando camisas de calidad y quiero contarte qué nos hace diferentes."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:08 – 0:40 / PROPUESTA DE VALOR</div>
+          <div class="script-action">🎬 Intercalar planos de la fábrica, telas, proceso mientras habla.</div>
+          <div class="script-text">"Aquí fabricamos todo nosotros. Importamos nuestra propia tela para garantizar calidad desde el origen. Vendemos al mayoreo desde 30 piezas — sin intermediarios, con precio justo y producto que puedes tocar antes de comprometerte."</div>
+        </div>
+        <div class="script-block">
+          <div class="script-time">0:40 – 0:60 / CIERRE PERSONAL</div>
+          <div class="script-action">🎬 Propietario mirando a cámara, tono cercano.</div>
+          <div class="script-text">"Si estás buscando un proveedor en quien confiar, estoy aquí para demostrarte por qué somos la opción. Escríbeme personalmente."</div>
+        </div>
+        <div class="caption-box">
+          <div class="cap-label">📝 Caption para publicar</div>
+          <p>¿Quiénes somos y por qué comprar con nosotros? 👇
+
+[Nombre] lo explica en menos de 60 segundos.
+
+Fábrica propia ✅
+Tela importada ✅
+Mayoreo desde 30 piezas ✅
+Muestra gratis antes del pedido ✅
+
+¿Tienes preguntas? Escribe en comentarios o al WhatsApp 📲
+
+#wolfdaniels #fabricante #camisasmayoreo #quiénessomos #ropamexicana</p>
+        </div>
+      </div>
+      <div>
+        <div class="reel-col-label">NOTAS DE PRODUCCIÓN</div>
+        <div class="prod-note"><span class="icon">🎙️</span><span><strong>Audio:</strong> DJI Mic 3 en solapa. Este video necesita voz clara, es el más importante de todos.</span></div>
+        <div class="prod-note"><span class="icon">👔</span><span><strong>Look:</strong> Propietario con camisa de la propia marca. Simple, limpio. No traje, pero tampoco informal.</span></div>
+        <div class="prod-note"><span class="icon">📌</span><span><strong>Uso:</strong> Este video se fija en el perfil como primer video destacado. Es la carta de presentación.</span></div>
+      </div>
+    </div>
+
+    <div class="visual-ref" style="padding:20px 32px 24px; border-top:1px solid #1a1a1a; background:var(--gray);">
+      <div class="vr-label">🖼 REFERENCIA VISUAL — INSTITUCIONAL</div>
+      <div class="vr-imgs">
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/31112215/pexels-photo-31112215.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Plano B — maquinaria</div></div>
+            <div class="vr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="vr-img-caption">Camisa terminada</div></div>
+      </div>
+      <p class="vr-note">🎥 Propietario con CAMISA PROPIA de la marca. DJI Mic 3. Este video se FIJA en el perfil. El más importante.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ======= BANNERS ======= -->
+<div class="section-divider" id="posts">
+  <div class="div-num">02</div>
+  <div class="div-info">
+    <h2>LOS 8 BANNERS / POSTS</h2>
+    <p>Copy completo, concepto visual y notas de diseño para cada pieza gráfica</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="posts-grid">
+
+    <div class="post-card">
+      <div class="post-thumb thumb-transparencia">30→∞</div>
+      <div class="post-content">
+        <div class="post-num">BANNER 01</div>
+        <div class="post-title">EMPIEZA DESDE 30</div>
+        <span class="tag-pill tag-transparencia">Transparencia</span>
+        <div class="post-headline">"30 piezas. Sin mínimos imposibles. Sin intermediarios."</div>
+        <div class="post-body-text">Subtexto: Conoce nuestro catálogo y cotiza hoy.</div>
+        <div class="post-design-note">🎨 Diseño: Número "30" grande en centro. Fondo negro/oscuro. Acento en dorado o color de marca. Logo Wolf Daniels esquina. CTA: "WhatsApp en bio".</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-thumb thumb-autoridad">100%</div>
+      <div class="post-content">
+        <div class="post-num">BANNER 02</div>
+        <div class="post-title">TELA IMPORTADA</div>
+        <span class="tag-pill tag-autoridad">Autoridad</span>
+        <div class="post-headline">"No toda tela es igual. La nuestra viene de donde sí importa."</div>
+        <div class="post-body-text">Subtexto: Importamos personalmente para garantizar cada pieza.</div>
+        <div class="post-design-note">🎨 Diseño: Foto de close-up de tela de fondo. Tipografía bold encima. Datos: % de algodón o composición si aplica. Tono: premium, confiable.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-thumb thumb-social">⭐⭐⭐⭐⭐</div>
+      <div class="post-content">
+        <div class="post-num">BANNER 03</div>
+        <div class="post-title">TESTIMONIO EN GRÁFICA</div>
+        <span class="tag-pill tag-social">Prueba Social</span>
+        <div class="post-headline">"'El primer pedido lo dudé. Ya llevo 5.' — Cliente real"</div>
+        <div class="post-body-text">Reseña real de cliente con su nombre y ciudad. Foto del cliente si autoriza.</div>
+        <div class="post-design-note">🎨 Diseño: Fondo oscuro, texto grande con comillas. Nombre del cliente abajo, ciudad. Foto circular si tiene. Estrellas 5/5.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-thumb thumb-transparencia">🏭</div>
+      <div class="post-content">
+        <div class="post-num">BANNER 04</div>
+        <div class="post-title">DATO DE AUTORIDAD</div>
+        <span class="tag-pill tag-autoridad">Autoridad</span>
+        <div class="post-headline">"[X] años fabricando. [X,000] piezas entregadas. 0 fraudes."</div>
+        <div class="post-body-text">Números reales de la empresa. Si no hay exactos, usar aproximados honestos.</div>
+        <div class="post-design-note">🎨 Diseño: Carrusel de 3 slides — cada número en una diapositiva. Impacto visual de dato único. Tipografía XXL.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-thumb thumb-autoridad">VS</div>
+      <div class="post-content">
+        <div class="post-num">BANNER 05</div>
+        <div class="post-title">FABRICANTE VS INTERMEDIARIO</div>
+        <span class="tag-pill tag-autoridad">Autoridad</span>
+        <div class="post-headline">"¿Comprar al fabricante o al intermediario? La diferencia te va a sorprender."</div>
+        <div class="post-body-text">Carrusel comparando: precio, tiempo de respuesta, personalización, calidad, confianza.</div>
+        <div class="post-design-note">🎨 Diseño: Tabla comparativa visual. Columna izquierda "Intermediario" ❌ vs columna derecha "Wolf Daniels" ✅. Verde/rojo o claro/oscuro.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-thumb thumb-transparencia">📦</div>
+      <div class="post-content">
+        <div class="post-num">BANNER 06</div>
+        <div class="post-title">¿CÓMO COMPRAR? PASO A PASO</div>
+        <span class="tag-pill tag-transparencia">Transparencia</span>
+        <div class="post-headline">"Comprar al mayoreo con nosotros es así de simple."</div>
+        <div class="post-body-text">Paso 1: Contáctanos / Paso 2: Elige modelos y cantidad / Paso 3: Recibe muestra / Paso 4: Confirma pedido / Paso 5: Recibe en tu negocio.</div>
+        <div class="post-design-note">🎨 Diseño: Carrusel — cada paso en un slide con número grande e ícono. Limpio, simple, que desmitifique el proceso.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-thumb thumb-social">🤝</div>
+      <div class="post-content">
+        <div class="post-num">BANNER 07</div>
+        <div class="post-title">MUESTRA GRATIS</div>
+        <span class="tag-pill tag-social">Prueba Social</span>
+        <div class="post-headline">"Antes de comprar, toca. Te mandamos muestra gratis."</div>
+        <div class="post-body-text">Oferta de muestra sin costo para primer pedido. Desmonta la objeción principal de desconfianza.</div>
+        <div class="post-design-note">🎨 Diseño: Destaca "GRATIS" en color de acento. Imagen de camisa con fondo limpio. CTA grande: "Solicita tu muestra ahora".</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-thumb thumb-autoridad">FAQ</div>
+      <div class="post-content">
+        <div class="post-num">BANNER 08</div>
+        <div class="post-title">PREGUNTAS FRECUENTES</div>
+        <span class="tag-pill tag-autoridad">Autoridad</span>
+        <div class="post-headline">"Las 5 preguntas que todos hacen antes del primer pedido."</div>
+        <div class="post-body-text">¿Mínimo de piezas? / ¿Cómo sé que no es fraude? / ¿Hacen envíos? / ¿Puedo personalizar? / ¿Aceptan pagos en partes?</div>
+        <div class="post-design-note">🎨 Diseño: Carrusel — pregunta en slide 1, respuesta en slide 2 (alternado). Formato Q&A visual. Genera guardados y compartidos.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======= STORIES ======= -->
+<div class="section-divider" id="stories">
+  <div class="div-num">03</div>
+  <div class="div-info">
+    <h2>LAS 12 HISTORIAS</h2>
+    <p>Stories semanales pensadas para interacción, confianza y conversión directa</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="stories-flow">
+
+    <div class="story-card">
+      <div class="story-screen story-s1">
+        <div class="story-day">SEMANA 1</div>
+        <div class="story-num">01</div>
+        <div class="story-emoji">🏭</div>
+        <div class="story-headline">BUENOS DÍAS DESDE LA FÁBRICA</div>
+        <div class="story-sub">Video corto 15s mostrando el arranque del día</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Transparencia • Video</div>
+        <div class="story-desc">Clip crudo de la fábrica abriendo. Texto: "Otro día de trabajo. ¿Tu pedido ya está en camino?"</div>
+        <div class="story-cta">→ CTA: "Escríbenos"</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s2">
+        <div class="story-day">SEMANA 1</div>
+        <div class="story-num">02</div>
+        <div class="story-emoji">📊</div>
+        <div class="story-headline">ENCUESTA: ¿CUÁNTAS PIEZAS NECESITAS?</div>
+        <div class="story-sub">Sticker de encuesta interactivo</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Interacción • Encuesta</div>
+        <div class="story-desc">Opciones: 30–50 / 50–100 / 100–300 / +300 piezas. Genera datos reales de demanda y engagement.</div>
+        <div class="story-cta">→ Responder encuesta</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s3">
+        <div class="story-day">SEMANA 1</div>
+        <div class="story-num">03</div>
+        <div class="story-emoji">🧵</div>
+        <div class="story-headline">ASÍ SE VE LA TELA DE CERCA</div>
+        <div class="story-sub">Video macro de textura</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Autoridad • Video</div>
+        <div class="story-desc">Clip en slow motion de tela siendo tocada. Texto: "¿Notas la calidad? Esto es lo que recibe tu cliente."</div>
+        <div class="story-cta">→ Desliza para ver más</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s4">
+        <div class="story-day">SEMANA 2</div>
+        <div class="story-num">04</div>
+        <div class="story-emoji">❓</div>
+        <div class="story-headline">PREGUNTA ABIERTA</div>
+        <div class="story-sub">Sticker de preguntas</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Interacción • Engagement</div>
+        <div class="story-desc">"¿Qué te ha impedido comprar ropa al mayoreo antes?" — Las respuestas se usan en contenido futuro.</div>
+        <div class="story-cta">→ Responder</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s5">
+        <div class="story-day">SEMANA 2</div>
+        <div class="story-num">05</div>
+        <div class="story-emoji">📦</div>
+        <div class="story-headline">PEDIDO SALIENDO HOY</div>
+        <div class="story-sub">Video en tiempo real</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Prueba Social • Video</div>
+        <div class="story-desc">Mostrar cajas selladas listas para envío. Texto: "Este pedido va a [ciudad]. ¿El tuyo cuándo?"</div>
+        <div class="story-cta">→ "Cotiza ahora"</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s6">
+        <div class="story-day">SEMANA 2</div>
+        <div class="story-num">06</div>
+        <div class="story-emoji">✅</div>
+        <div class="story-headline">VERDADERO O FALSO</div>
+        <div class="story-sub">Quiz interactivo</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Autoridad • Interacción</div>
+        <div class="story-desc">"¿Verdad o mito? 'Comprar al mayoreo siempre es riesgo de fraude'." — Sticker V/F. Respuesta en siguiente story.</div>
+        <div class="story-cta">→ Votar</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s7">
+        <div class="story-day">SEMANA 3</div>
+        <div class="story-num">07</div>
+        <div class="story-emoji">🌡️</div>
+        <div class="story-headline">¿QUÉ MODELO TE GUSTA MÁS?</div>
+        <div class="story-sub">Slider de reacción o encuesta de producto</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Producto • Encuesta</div>
+        <div class="story-desc">Mostrar 2 modelos de camisa lado a lado. Encuesta: "¿Cuál pides primero?" Genera intención de compra.</div>
+        <div class="story-cta">→ Votar</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s8">
+        <div class="story-day">SEMANA 3</div>
+        <div class="story-num">08</div>
+        <div class="story-emoji">💬</div>
+        <div class="story-headline">RESPUESTA A OBJECIÓN REAL</div>
+        <div class="story-sub">Story de texto + voz</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Confianza • Texto</div>
+        <div class="story-desc">"Nos preguntan mucho: ¿cómo sé que no me van a estafar? Aquí la respuesta honesta:" — Listar: fábrica visible, muestras gratis, clientes reales.</div>
+        <div class="story-cta">→ "Escríbenos y velo tú mismo"</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s9">
+        <div class="story-day">SEMANA 3</div>
+        <div class="story-num">09</div>
+        <div class="story-emoji">🎬</div>
+        <div class="story-headline">DETRÁS DE CÁMARAS DEL REEL</div>
+        <div class="story-sub">BTS del contenido</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Transparencia • Video</div>
+        <div class="story-desc">Mostrar cómo se grabó uno de los reels. Humaniza la marca y muestra que hay producción real detrás.</div>
+        <div class="story-cta">→ Ver el reel completo</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s10">
+        <div class="story-day">SEMANA 4</div>
+        <div class="story-num">10</div>
+        <div class="story-emoji">📍</div>
+        <div class="story-headline">UBICACIÓN DE LA FÁBRICA</div>
+        <div class="story-sub">Imagen + ubicación en mapa</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Confianza • Foto</div>
+        <div class="story-desc">Foto exterior de la fábrica con dirección o ciudad. Sticker de ubicación de Instagram. "Aquí existimos, aquí trabajamos."</div>
+        <div class="story-cta">→ Ver ubicación</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s11">
+        <div class="story-day">SEMANA 4</div>
+        <div class="story-num">11</div>
+        <div class="story-emoji">🏆</div>
+        <div class="story-headline">RESUMEN DEL MES</div>
+        <div class="story-sub">Datos de impacto mensual</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Autoridad • Texto</div>
+        <div class="story-desc">"Este mes: [X] pedidos entregados, [X] clientes nuevos, [X] piezas fabricadas." Genera percepción de empresa activa y confiable.</div>
+        <div class="story-cta">→ "Sé parte del siguiente mes"</div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-screen story-s12">
+        <div class="story-day">SEMANA 4</div>
+        <div class="story-num">12</div>
+        <div class="story-emoji">📲</div>
+        <div class="story-headline">CTA DIRECTO A WHATSAPP</div>
+        <div class="story-sub">Story de conversión</div>
+      </div>
+      <div class="story-info">
+        <div class="story-type">Conversión • CTA</div>
+        <div class="story-desc">"Si llegaste hasta aquí y aún no has cotizado, hoy es el día. Escríbenos, sin compromiso." Link directo a WhatsApp.</div>
+        <div class="story-cta">→ Link WhatsApp</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">🐑 Black Sheep</div>
+  <span>PLAN DE CONTENIDO — WOLF DANIELS MAKTUB</span>
+  <span>BLACKSHEEPAGENCIA.COM</span>
+</footer>
+
+</body>
+</html>
