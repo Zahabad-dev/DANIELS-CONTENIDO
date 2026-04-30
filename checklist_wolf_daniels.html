@@ -180,6 +180,11 @@
   .toma-txt { font-size:12px; color:#888; line-height:1.5; transition:color .2s; }
   .toma-cb:checked + .toma-txt { text-decoration:line-through; color:#444; }
   .toma-star { color:var(--gold); font-size:10px; margin-right:3px; }
+  .toma-tag  { display:inline-block; font-size:8px; letter-spacing:1.5px; padding:1px 6px; border-radius:2px; margin-right:6px; font-weight:700; vertical-align:middle; flex-shrink:0; }
+  .tag-v  { background:#0d1f33; color:#3a86ff; }
+  .tag-f  { background:#0d2217; color:#2ecc71; }
+  .tag-fv { background:#1e1228; color:#9b5de5; }
+  .toma-desc { vertical-align:middle; }
 </style>
 </head>
 <body>
@@ -552,14 +557,14 @@
   </table>
 </section>
 
-<!-- ===== TOMAS DE REELS ===== -->
+<!-- ===== COMPOSICIÓN DE TOMAS ===== -->
 <section class="section" id="tomas">
-  <div class="sec-title"><span class="sec-icon">📷</span> Tomas de Reels — Shot List</div>
+  <div class="sec-title"><span class="sec-icon">📷</span> Checklist de Composición — Foto &amp; Video</div>
   <div class="tomas-stats">
     <span class="toma-count-big" id="tomas-done">0</span>
     <span class="toma-stat-txt">de</span>
-    <span class="toma-count-big" id="tomas-total" style="color:#555">53</span>
-    <span class="toma-stat-txt">tomas capturadas</span>
+    <span class="toma-count-big" id="tomas-total" style="color:#555">55</span>
+    <span class="toma-stat-txt">composiciones confirmadas</span>
     <div class="toma-global-bar-bg"><div class="toma-global-bar-fill" id="tomas-fill"></div></div>
     <span class="toma-pct-txt" id="tomas-pct">0%</span>
   </div>
@@ -573,20 +578,19 @@
         <div class="toma-reel-cam">Sony III — 60 seg</div>
         <div class="toma-mini-bar-row">
           <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
-          <div class="toma-mini-pct">0/10</div>
+          <div class="toma-mini-pct">0/9</div>
         </div>
       </div>
       <ul class="toma-list">
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Primer plano: manos tocando tela / textura close-up</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Máquina de coser encendida — corte rápido</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Rollo de tela llegando al taller</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Mesa de corte / tela trazada</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Tijeras cortando tela (plano picado)</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Costura en máquina — travelling lateral</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Planchado de camisa</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Camisa terminada colgada / planchada</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Caja con 30 piezas empacadas (cenital)</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Propietario / logo a cámara — CTA final</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano general — taller completo de fondo</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano medio — trabajador en acción</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Primer plano — manos / detalle de proceso</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano detalle / Macro — textura de tela, hilo, aguja</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Cenital — mesa de corte / piezas ordenadas</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Travelling lateral — máquina cosiendo en movimiento</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Slow motion — corte de tela / aguja cosiendo</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-f">FOTO</span><span class="toma-desc">Estático — camisa terminada en percha</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">A cámara — propietario / CTA final</span></span></li>
       </ul>
     </div>
 
@@ -598,16 +602,17 @@
         <div class="toma-reel-cam">Pocket 3 — 30 seg</div>
         <div class="toma-mini-bar-row">
           <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
-          <div class="toma-mini-pct">0/6</div>
+          <div class="toma-mini-pct">0/7</div>
         </div>
       </div>
       <ul class="toma-list">
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cajas / rollos llegando al taller</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Abrir rollos — unboxing estilo</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Mano deslizando sobre tela — slow motion</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Distintos colores disponibles extendidos</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Close-up etiqueta o sello de calidad</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Varios colores extendidos — plano final</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Plano general — rollos llegando al taller</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Plano medio — abrir / desenvolver rollo</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Primer plano — mano posada sobre tela</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Macro — trama y textura de tela close-up</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Slow motion — mano deslizando sobre tela</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-f">FOTO</span><span class="toma-desc">Cenital — abanico de colores de tela extendidos</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-f">FOTO</span><span class="toma-desc">Estático — display de todos los colores disponibles</span></span></li>
       </ul>
     </div>
 
@@ -623,13 +628,13 @@
         </div>
       </div>
       <ul class="toma-list">
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-star">★</span>ESTRELLA: Cenital 50 camisas dobladas y ordenadas</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Doblar pieza individual</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Meter en bolsa individual</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Meter en caja</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Etiquetar caja</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Caja sellada lista para envío</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Logo / sello Wolf Daniels en la caja</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-f">FOTO</span><span class="toma-star">★</span><span class="toma-desc">Cenital ESTRELLA — 50 camisas ordenadas</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Primer plano — manos doblando pieza individual</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-f">FOTO</span><span class="toma-desc">Plano detalle — bolsa sellada / etiqueta</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Plano medio — proceso de empaque en caja</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Travelling — caja cerrada y sellada</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-f">FOTO</span><span class="toma-desc">Estático — caja con logo Wolf Daniels visible</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Picado — pila de cajas listas para envío</span></span></li>
       </ul>
     </div>
 
@@ -645,12 +650,12 @@
         </div>
       </div>
       <ul class="toma-list">
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cliente plano medio — natural (negocio o fábrica de fondo)</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cliente hablando — gancho inicial</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cliente hablando — historia / desarrollo</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cliente hablando — recomendación cierre</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Plano B: negocio del cliente con camisas en display</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Clientes del cliente usando las camisas</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Plano medio — cliente a cámara (fondo natural)</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Primer plano — cara / reacción del cliente</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano general — negocio del cliente de fondo</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">A cámara / Talking head — cliente habla directo</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano B — negocio del cliente con camisas en display</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano B — clientes usando las camisas</span></span></li>
       </ul>
     </div>
 
@@ -666,12 +671,12 @@
         </div>
       </div>
       <ul class="toma-list">
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Propietario a cámara — gancho directo</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Tela mala vs buena — comparativa</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Texto animado / plano: ERROR 1 ❌</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Texto animado / plano: ERROR 2 ❌</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Texto animado: ERROR 3 — EL MÁS CARO ❌</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">CTA final en pantalla / propietario</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">A cámara — propietario gancho directo</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano detalle — tela mala vs tela buena (comparativa)</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Plano medio — demostración / manipulación de tela</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-f">FOTO</span><span class="toma-desc">Cenital — productos comparados en mesa</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Insert / Texto — ERROR 1, 2, 3 en pantalla</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">A cámara — propietario cierre y CTA</span></span></li>
       </ul>
     </div>
 
@@ -683,15 +688,16 @@
         <div class="toma-reel-cam">Pocket 3 + Macro — 45 seg</div>
         <div class="toma-mini-bar-row">
           <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
-          <div class="toma-mini-pct">0/5</div>
+          <div class="toma-mini-pct">0/6</div>
         </div>
       </div>
       <ul class="toma-list">
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Mano apretando tela — close-up extremo</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Tela arrugada (mala) vs sin arruga (buena)</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Tela contra la luz — backlight / transparencia</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Macro de fibras — Pocket 3 modo macro</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">CTA propietario o texto en pantalla</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano detalle — mano apretando tela</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Macro — fibras y trama de tela (Pocket 3 macro)</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Contra luz / Backlight — tela contra ventana</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Primer plano — comparativa tela arrugada vs lisa</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Slow motion — tela cayendo / desplegándose</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">A cámara — propietario / CTA final</span></span></li>
       </ul>
     </div>
 
@@ -703,17 +709,18 @@
         <div class="toma-reel-cam">Sony III + Pocket 3 — 60 seg</div>
         <div class="toma-mini-bar-row">
           <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
-          <div class="toma-mini-pct">0/7</div>
+          <div class="toma-mini-pct">0/8</div>
         </div>
       </div>
       <ul class="toma-list">
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Llegada a fábrica de mañana — puerta abriéndose</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Luces encendiéndose / máquinas arrancando</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Área de costura — costureras trabajando (Pocket 3 movimiento)</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Control de calidad pieza por pieza</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Área de empaque en acción</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Pedidos listos para salir — cajas apiladas</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Exterior fábrica o propietario — cierre</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano general — exterior fábrica (establishing shot)</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano general — interior área de costura</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Plano medio — trabajadores en acción</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Primer plano — manos / detalle del proceso</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Travelling de seguimiento — recorrido por la fábrica</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Cámara en mano / Handheld — movimiento orgánico</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Cenital — área de empaque / piezas listas</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Timelapse — día de trabajo comprimido</span></span></li>
       </ul>
     </div>
 
@@ -729,12 +736,12 @@
         </div>
       </div>
       <ul class="toma-list">
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Trabajador en fábrica — plano presentación (máquinas de fondo)</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Manos del trabajador cortando tela</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Manos cosiendo en máquina</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Trabajador revisando calidad — mirando prenda</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Trabajador levantando camisa terminada a cámara</span></li>
-        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cierre: trabajador mirando directo al lente — natural</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano general — entorno de trabajo (fábrica de fondo)</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Plano medio — trabajador presentándose en cámara</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Primer plano — manos trabajando (corte / costura)</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-fv">FOTO+VID</span><span class="toma-desc">Plano detalle — herramientas / proceso de manufactura</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">A cámara — trabajador habla directo al lente</span></span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-tag tag-v">VID</span><span class="toma-desc">Slow motion — costura o detalle de manufactura</span></span></li>
       </ul>
     </div>
 
@@ -904,22 +911,25 @@
 
     // ── Hoja Tomas de Reels ───────────────────────────────────────────
     const tomaRows = [
-      ['#', 'REEL', 'TOMA', 'DESCRIPCIÓN', 'CAPTURADA']
+      ['REEL', 'TÍTULO', 'TIPO', 'COMPOSICIÓN', 'CAPTURADA']
     ];
     document.querySelectorAll('.toma-reel-card').forEach(card => {
       const reelNum  = card.querySelector('.toma-reel-num').textContent.trim();
       const reelTit  = card.querySelector('.toma-reel-title').textContent.trim();
-      tomaRows.push(['', '── ' + reelNum + ' — ' + reelTit + ' ──', '', '', '']);
-      card.querySelectorAll('.toma-item').forEach((item, i) => {
+      tomaRows.push(['── ' + reelNum + ' — ' + reelTit + ' ──', '', '', '', '']);
+      card.querySelectorAll('.toma-item').forEach(item => {
         const checked = item.querySelector('.toma-cb').checked;
-        const txt = item.querySelector('.toma-txt').textContent.trim();
-        tomaRows.push([reelNum, reelTit, 'TOMA ' + (i+1), txt, checked ? '✓' : '']);
+        const tagEl   = item.querySelector('.toma-tag');
+        const descEl  = item.querySelector('.toma-desc');
+        const tipo    = tagEl  ? tagEl.textContent.trim()  : '';
+        const desc    = descEl ? descEl.textContent.trim() : '';
+        tomaRows.push([reelNum, reelTit, tipo, desc, checked ? '✓' : '']);
       });
       tomaRows.push([]);
     });
     const wsTomas = XLSX.utils.aoa_to_sheet(tomaRows);
-    wsTomas['!cols'] = [{wch:10},{wch:32},{wch:9},{wch:55},{wch:10}];
-    XLSX.utils.book_append_sheet(wb, wsTomas, 'Tomas de Reels');
+    wsTomas['!cols'] = [{wch:10},{wch:32},{wch:12},{wch:55},{wch:10}];
+    XLSX.utils.book_append_sheet(wb, wsTomas, 'Composición');
 
     XLSX.writeFile(wb, 'WolfDaniels_Checklist_' + fecha.replace(/\//g, '-') + '.xlsx');
   }
