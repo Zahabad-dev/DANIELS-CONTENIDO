@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist de Producción — Wolf Daniels Maktub</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root {
+    --black: #0a0a0a;
+    --gold: #F5C518;
+    --white: #f5f5f0;
+    --gray: #141414;
+    --gray2: #1e1e1e;
+    --gray3: #2a2a2a;
+    --green: #2ecc71;
+    --blue: #3a86ff;
+    --purple: #9b5de5;
+    --red: #E03030;
+    --orange: #f39c12;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; line-height: 1.6; }
+
+  .nav {
+    position: sticky; top: 0;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #1e1e1e;
+    padding: 0 5%;
+    display: flex; align-items: center; gap: 16px;
+    z-index: 100;
+  }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--gold); padding: 18px 24px 18px 0; border-right: 1px solid #222; margin-right: 8px; }
+  .nav-title { font-size: 11px; letter-spacing: 3px; color: #555; text-transform: uppercase; flex: 1; }
+
+  .btn-export {
+    background: var(--gold); color: var(--black);
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 10px 22px;
+    transition: opacity 0.2s;
+  }
+  .btn-export:hover { opacity: 0.85; }
+
+  .hero {
+    padding: 60px 5% 48px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 80px); line-height: 0.95; letter-spacing: 2px; margin-bottom: 10px; }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero p { color: #555; font-size: 13px; letter-spacing: 1px; }
+
+  .progress-bar-wrap { margin: 24px 5% 0; display: flex; gap: 12px; align-items: center; }
+  .progress-bar-bg { flex: 1; height: 4px; background: #1a1a1a; border-radius: 2px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: var(--gold); width: 0%; transition: width 0.4s; border-radius: 2px; }
+  .progress-label { font-size: 11px; color: #555; letter-spacing: 2px; white-space: nowrap; }
+  .progress-count { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gold); }
+
+  .stats-row { display: flex; gap: 0; padding: 0 5%; border-bottom: 1px solid #1a1a1a; }
+  .stat-block { padding: 18px 28px; border-right: 1px solid #1a1a1a; text-align: center; }
+  .stat-block:last-child { border-right: none; }
+  .stat-n { font-family: 'Bebas Neue', sans-serif; font-size: 32px; line-height: 1; }
+  .stat-l { font-size: 10px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+  .stat-pending .stat-n { color: var(--orange); }
+  .stat-inprogress .stat-n { color: var(--blue); }
+  .stat-done .stat-n { color: var(--green); }
+  .stat-total .stat-n { color: var(--gold); }
+
+  .section { padding: 48px 5%; border-bottom: 1px solid #1a1a1a; }
+  .sec-title { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 4px; color: #444; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .sec-title::after { content: ''; flex: 1; height: 1px; background: #1a1a1a; }
+  .sec-icon { font-size: 16px; }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { border-bottom: 2px solid #222; }
+  thead th { font-size: 9px; letter-spacing: 3px; color: #444; text-transform: uppercase; text-align: left; padding: 10px 12px; font-weight: 500; }
+  tbody tr { border-bottom: 1px solid #111; transition: background 0.15s; }
+  tbody tr:hover { background: #0f0f0f; }
+
+  td { padding: 10px 12px; vertical-align: middle; }
+
+  .td-num { font-size: 10px; color: #444; letter-spacing: 2px; white-space: nowrap; }
+  .td-title { font-size: 14px; color: var(--white); font-weight: 500; }
+  .td-pilar { font-size: 10px; letter-spacing: 1px; padding: 3px 8px; border-radius: 1px; white-space: nowrap; }
+  .pilar-trans { background: rgba(245,197,24,0.1); color: var(--gold); }
+  .pilar-social { background: rgba(46,204,113,0.1); color: var(--green); }
+  .pilar-auto { background: rgba(58,134,255,0.1); color: var(--blue); }
+  .pilar-inst { background: rgba(155,93,229,0.1); color: var(--purple); }
+  .pilar-inter { background: rgba(243,156,18,0.1); color: var(--orange); }
+
+  .td-dur { font-size: 12px; color: #666; white-space: nowrap; }
+  .td-cam { font-size: 11px; color: #555; white-space: nowrap; }
+  .td-notas { font-size: 11px; color: #666; max-width: 200px; }
+
+  .status-sel {
+    background: var(--gray2);
+    border: 1px solid #2a2a2a;
+    color: var(--white);
+    font-size: 11px;
+    font-family: 'DM Sans', sans-serif;
+    padding: 5px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 130px;
+  }
+  .status-sel:focus { border-color: var(--gold); }
+  .status-sel.s-pendiente { border-left: 3px solid var(--orange); }
+  .status-sel.s-en-proceso { border-left: 3px solid var(--blue); }
+  .status-sel.s-listo { border-left: 3px solid var(--green); }
+
+  .td-check { text-align: center; }
+  .check-box {
+    width: 18px; height: 18px;
+    appearance: none; -webkit-appearance: none;
+    border: 1px solid #333; background: var(--gray);
+    cursor: pointer; border-radius: 2px; position: relative;
+    display: inline-block; vertical-align: middle;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .check-box:checked { background: var(--green); border-color: var(--green); }
+  .check-box:checked::after { content: '✓'; position: absolute; top: -1px; left: 2px; font-size: 12px; color: #000; font-weight: 700; }
+
+  .td-notes-input {
+    background: transparent; border: none; border-bottom: 1px solid #222;
+    color: #888; font-size: 11px; font-family: 'DM Sans', sans-serif;
+    width: 100%; outline: none; padding: 3px 0;
+    transition: border-color 0.2s;
+  }
+  .td-notes-input:focus { border-color: var(--gold); color: var(--white); }
+
+  .row-done td { opacity: 0.45; }
+  .row-done .td-title { text-decoration: line-through; }
+
+  footer { padding: 32px 5%; border-top: 1px solid #1a1a1a; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  footer .f-logo { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--gold); }
+  footer span { font-size: 10px; color: #333; letter-spacing: 2px; }
+
+  @media (max-width: 768px) {
+    .td-cam, .td-dur, .td-notas { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">🐺 WOLF DANIELS</div>
+  <div class="nav-title">Checklist de Producción</div>
+  <button class="btn-export" onclick="exportExcel()">⬇ Exportar Excel</button>
+</nav>
+
+<div class="hero">
+  <h1>CHECKLIST<br><em>PRODUCCIÓN</em></h1>
+  <p>28 piezas de contenido — control de avance por pieza</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-block stat-total"><div class="stat-n" id="cnt-total">28</div><div class="stat-l">Total</div></div>
+  <div class="stat-block stat-pending"><div class="stat-n" id="cnt-pend">28</div><div class="stat-l">Pendiente</div></div>
+  <div class="stat-block stat-inprogress"><div class="stat-n" id="cnt-prog">0</div><div class="stat-l">En proceso</div></div>
+  <div class="stat-block stat-done"><div class="stat-n" id="cnt-done">0</div><div class="stat-l">Listo</div></div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-fill"></div></div>
+  <div class="progress-label"><span class="progress-count" id="prog-pct">0%</span> completado</div>
+</div>
+
+<!-- ===== REELS ===== -->
+<section class="section">
+  <div class="sec-title"><span class="sec-icon">🎬</span> 8 Reels</div>
+  <table id="tbl-reels">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Título</th>
+        <th>Pilar</th>
+        <th>Duración</th>
+        <th>Cámara</th>
+        <th>Estado</th>
+        <th>✓</th>
+        <th>Notas / Observaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-num">REEL 01</td>
+        <td class="td-title">Así nace una camisa</td>
+        <td><span class="td-pilar pilar-trans">Transparencia</span></td>
+        <td class="td-dur">60 seg</td>
+        <td class="td-cam">Sony III</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">REEL 02</td>
+        <td class="td-title">Llegó la tela — mira esto</td>
+        <td><span class="td-pilar pilar-trans">Transparencia</span></td>
+        <td class="td-dur">30 seg</td>
+        <td class="td-cam">Pocket 3</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">REEL 03</td>
+        <td class="td-title">50 piezas listas para entregar</td>
+        <td><span class="td-pilar pilar-trans">Transparencia</span></td>
+        <td class="td-dur">45 seg</td>
+        <td class="td-cam">Sony III</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">REEL 04</td>
+        <td class="td-title">Testimonio — "Pensé que era fraude"</td>
+        <td><span class="td-pilar pilar-social">Prueba Social</span></td>
+        <td class="td-dur">60 seg</td>
+        <td class="td-cam">Sony III</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">REEL 05</td>
+        <td class="td-title">3 errores al comprar ropa al mayoreo</td>
+        <td><span class="td-pilar pilar-auto">Autoridad</span></td>
+        <td class="td-dur">45 seg</td>
+        <td class="td-cam">Pocket 3</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">REEL 06</td>
+        <td class="td-title">¿Cómo reconocer tela de calidad?</td>
+        <td><span class="td-pilar pilar-auto">Autoridad</span></td>
+        <td class="td-dur">45 seg</td>
+        <td class="td-cam">Pocket 3 + Macro</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">REEL 07</td>
+        <td class="td-title">Un día en la fábrica</td>
+        <td><span class="td-pilar pilar-trans">Transparencia</span></td>
+        <td class="td-dur">60 seg</td>
+        <td class="td-cam">Sony III + Pocket 3</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">REEL 08</td>
+        <td class="td-title">Desde adentro — la voz de quien lo hace</td>
+        <td><span class="td-pilar pilar-inst">Institucional</span></td>
+        <td class="td-dur">60 seg</td>
+        <td class="td-cam">Sony III</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== BANNERS ===== -->
+<section class="section">
+  <div class="sec-title"><span class="sec-icon">🖼</span> 8 Banners / Posts</div>
+  <table id="tbl-posts">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Título</th>
+        <th>Pilar</th>
+        <th>Formato</th>
+        <th>—</th>
+        <th>Estado</th>
+        <th>✓</th>
+        <th>Notas / Observaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-num">BANNER 01</td>
+        <td class="td-title">Empieza desde 30</td>
+        <td><span class="td-pilar pilar-trans">Transparencia</span></td>
+        <td class="td-dur">Estático</td>
+        <td class="td-cam">—</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">BANNER 02</td>
+        <td class="td-title">Tela importada</td>
+        <td><span class="td-pilar pilar-auto">Autoridad</span></td>
+        <td class="td-dur">Estático</td>
+        <td class="td-cam">—</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">BANNER 03</td>
+        <td class="td-title">Testimonio en gráfica</td>
+        <td><span class="td-pilar pilar-social">Prueba Social</span></td>
+        <td class="td-dur">Estático</td>
+        <td class="td-cam">—</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">BANNER 04</td>
+        <td class="td-title">Dato de autoridad</td>
+        <td><span class="td-pilar pilar-auto">Autoridad</span></td>
+        <td class="td-dur">Carrusel 3</td>
+        <td class="td-cam">—</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">BANNER 05</td>
+        <td class="td-title">Fabricante vs intermediario</td>
+        <td><span class="td-pilar pilar-auto">Autoridad</span></td>
+        <td class="td-dur">Carrusel</td>
+        <td class="td-cam">—</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">BANNER 06</td>
+        <td class="td-title">¿Cómo comprar? Paso a paso</td>
+        <td><span class="td-pilar pilar-trans">Transparencia</span></td>
+        <td class="td-dur">Carrusel 5</td>
+        <td class="td-cam">—</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">BANNER 07</td>
+        <td class="td-title">Muestra gratis</td>
+        <td><span class="td-pilar pilar-social">Prueba Social</span></td>
+        <td class="td-dur">Estático</td>
+        <td class="td-cam">—</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">BANNER 08</td>
+        <td class="td-title">Preguntas frecuentes</td>
+        <td><span class="td-pilar pilar-auto">Autoridad</span></td>
+        <td class="td-dur">Carrusel Q&A</td>
+        <td class="td-cam">—</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== HISTORIAS ===== -->
+<section class="section">
+  <div class="sec-title"><span class="sec-icon">📱</span> 12 Historias</div>
+  <table id="tbl-stories">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Título</th>
+        <th>Pilar</th>
+        <th>Semana</th>
+        <th>Tipo</th>
+        <th>Estado</th>
+        <th>✓</th>
+        <th>Notas / Observaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-num">HISTORIA 01</td>
+        <td class="td-title">Buenos días desde la fábrica</td>
+        <td><span class="td-pilar pilar-trans">Transparencia</span></td>
+        <td class="td-dur">Semana 1</td>
+        <td class="td-cam">Video 15s</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 02</td>
+        <td class="td-title">Encuesta: ¿Cuántas piezas necesitas?</td>
+        <td><span class="td-pilar pilar-inter">Interacción</span></td>
+        <td class="td-dur">Semana 1</td>
+        <td class="td-cam">Encuesta</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 03</td>
+        <td class="td-title">Así se ve la tela de cerca</td>
+        <td><span class="td-pilar pilar-auto">Autoridad</span></td>
+        <td class="td-dur">Semana 1</td>
+        <td class="td-cam">Video macro</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 04</td>
+        <td class="td-title">Pregunta abierta</td>
+        <td><span class="td-pilar pilar-inter">Interacción</span></td>
+        <td class="td-dur">Semana 2</td>
+        <td class="td-cam">Sticker preguntas</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 05</td>
+        <td class="td-title">Pedido saliendo hoy</td>
+        <td><span class="td-pilar pilar-social">Prueba Social</span></td>
+        <td class="td-dur">Semana 2</td>
+        <td class="td-cam">Video real</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 06</td>
+        <td class="td-title">Verdadero o falso</td>
+        <td><span class="td-pilar pilar-auto">Autoridad</span></td>
+        <td class="td-dur">Semana 2</td>
+        <td class="td-cam">Quiz V/F</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 07</td>
+        <td class="td-title">¿Qué modelo te gusta más?</td>
+        <td><span class="td-pilar pilar-inter">Interacción</span></td>
+        <td class="td-dur">Semana 3</td>
+        <td class="td-cam">Encuesta</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 08</td>
+        <td class="td-title">Respuesta a objeción real</td>
+        <td><span class="td-pilar pilar-social">Prueba Social</span></td>
+        <td class="td-dur">Semana 3</td>
+        <td class="td-cam">Texto + voz</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 09</td>
+        <td class="td-title">Detrás de cámaras del reel</td>
+        <td><span class="td-pilar pilar-trans">Transparencia</span></td>
+        <td class="td-dur">Semana 3</td>
+        <td class="td-cam">Video BTS</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 10</td>
+        <td class="td-title">En 15 seg — Del rollo al envío</td>
+        <td><span class="td-pilar pilar-trans">Transparencia</span></td>
+        <td class="td-dur">Semana 4</td>
+        <td class="td-cam">Timelapse</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 11</td>
+        <td class="td-title">Resumen del mes</td>
+        <td><span class="td-pilar pilar-auto">Autoridad</span></td>
+        <td class="td-dur">Semana 4</td>
+        <td class="td-cam">Texto</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+      <tr>
+        <td class="td-num">HISTORIA 12</td>
+        <td class="td-title">CTA directo a WhatsApp</td>
+        <td><span class="td-pilar pilar-social">Prueba Social</span></td>
+        <td class="td-dur">Semana 4</td>
+        <td class="td-cam">Conversión</td>
+        <td><select class="status-sel s-pendiente" onchange="updateStatus(this)"><option value="Pendiente">⏳ Pendiente</option><option value="En proceso">🔄 En proceso</option><option value="Listo">✅ Listo</option></select></td>
+        <td class="td-check"><input type="checkbox" class="check-box" onchange="syncCheck(this)"></td>
+        <td><input type="text" class="td-notes-input" placeholder="Agregar nota..."></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <div class="f-logo">🐑 Black Sheep</div>
+  <span>CHECKLIST — WOLF DANIELS MAKTUB</span>
+  <span>BLACKSHEEPAGENCIA.COM</span>
+</footer>
+
+<script>
+  // ── Status select → clase visual + sync checkbox ──────────────────────────
+  function updateStatus(sel) {
+    const row = sel.closest('tr');
+    sel.className = 'status-sel';
+    const cb = row.querySelector('.check-box');
+    if (sel.value === 'Listo') {
+      sel.classList.add('s-listo');
+      cb.checked = true;
+      row.classList.add('row-done');
+    } else if (sel.value === 'En proceso') {
+      sel.classList.add('s-en-proceso');
+      cb.checked = false;
+      row.classList.remove('row-done');
+    } else {
+      sel.classList.add('s-pendiente');
+      cb.checked = false;
+      row.classList.remove('row-done');
+    }
+    updateStats();
+  }
+
+  // ── Checkbox → sync select ─────────────────────────────────────────────────
+  function syncCheck(cb) {
+    const row = cb.closest('tr');
+    const sel = row.querySelector('.status-sel');
+    if (cb.checked) {
+      sel.value = 'Listo';
+      sel.className = 'status-sel s-listo';
+      row.classList.add('row-done');
+    } else {
+      sel.value = 'Pendiente';
+      sel.className = 'status-sel s-pendiente';
+      row.classList.remove('row-done');
+    }
+    updateStats();
+  }
+
+  // ── Actualizar contadores y barra ──────────────────────────────────────────
+  function updateStats() {
+    const sels = document.querySelectorAll('.status-sel');
+    let done = 0, prog = 0, pend = 0;
+    sels.forEach(s => {
+      if (s.value === 'Listo') done++;
+      else if (s.value === 'En proceso') prog++;
+      else pend++;
+    });
+    const total = sels.length;
+    document.getElementById('cnt-total').textContent = total;
+    document.getElementById('cnt-pend').textContent = pend;
+    document.getElementById('cnt-prog').textContent = prog;
+    document.getElementById('cnt-done').textContent = done;
+    const pct = Math.round((done / total) * 100);
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('prog-pct').textContent = pct + '%';
+  }
+
+  // ── Exportar a Excel ───────────────────────────────────────────────────────
+  function exportExcel() {
+    const wb = XLSX.utils.book_new();
+    const fecha = new Date().toLocaleDateString('es-MX');
+
+    const sections = [
+      { id: 'tbl-reels',   label: 'Reels' },
+      { id: 'tbl-posts',   label: 'Banners' },
+      { id: 'tbl-stories', label: 'Historias' },
+    ];
+
+    // Hoja única con todas las piezas
+    const allRows = [
+      ['Wolf Daniels Maktub — Checklist de Producción'],
+      ['Generado:', fecha],
+      [],
+      ['#', 'Título', 'Pilar', 'Semana / Duración', 'Tipo / Cámara', 'Estado', 'Completado', 'Notas']
+    ];
+
+    sections.forEach(sec => {
+      const table = document.getElementById(sec.id);
+      allRows.push([sec.label.toUpperCase(), '', '', '', '', '', '', '']);
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach(tr => {
+        const tds = tr.querySelectorAll('td');
+        const num    = tds[0].textContent.trim();
+        const title  = tds[1].textContent.trim();
+        const pilar  = tds[2].textContent.trim();
+        const dur    = tds[3].textContent.trim();
+        const cam    = tds[4].textContent.trim();
+        const status = tr.querySelector('.status-sel').value;
+        const checked = tr.querySelector('.check-box').checked ? '✓' : '';
+        const nota   = tr.querySelector('.td-notes-input').value || '';
+        allRows.push([num, title, pilar, dur, cam, status, checked, nota]);
+      });
+      allRows.push([]);
+    });
+
+    const ws = XLSX.utils.aoa_to_sheet(allRows);
+
+    // Anchos de columna
+    ws['!cols'] = [
+      { wch: 13 }, { wch: 42 }, { wch: 16 }, { wch: 14 },
+      { wch: 18 }, { wch: 14 }, { wch: 10 }, { wch: 35 }
+    ];
+
+    XLSX.utils.book_append_sheet(wb, ws, 'Checklist');
+
+    // Hoja individual por sección
+    sections.forEach(sec => {
+      const table = document.getElementById(sec.id);
+      const secRows = [
+        ['#', 'Título', 'Pilar', 'Semana / Duración', 'Tipo / Cámara', 'Estado', 'Completado', 'Notas']
+      ];
+      table.querySelectorAll('tbody tr').forEach(tr => {
+        const tds = tr.querySelectorAll('td');
+        secRows.push([
+          tds[0].textContent.trim(),
+          tds[1].textContent.trim(),
+          tds[2].textContent.trim(),
+          tds[3].textContent.trim(),
+          tds[4].textContent.trim(),
+          tr.querySelector('.status-sel').value,
+          tr.querySelector('.check-box').checked ? '✓' : '',
+          tr.querySelector('.td-notes-input').value || ''
+        ]);
+      });
+      const ws2 = XLSX.utils.aoa_to_sheet(secRows);
+      ws2['!cols'] = [
+        { wch: 13 }, { wch: 42 }, { wch: 16 }, { wch: 14 },
+        { wch: 18 }, { wch: 14 }, { wch: 10 }, { wch: 35 }
+      ];
+      XLSX.utils.book_append_sheet(wb, ws2, sec.label);
+    });
+
+    XLSX.writeFile(wb, 'WolfDaniels_Checklist_' + fecha.replace(/\//g, '-') + '.xlsx');
+  }
+
+  // Inicializar
+  updateStats();
+</script>
+</body>
+</html>
