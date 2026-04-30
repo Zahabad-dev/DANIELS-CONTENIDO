@@ -144,6 +144,42 @@
   @media (max-width: 768px) {
     .td-cam, .td-dur, .td-notas { display: none; }
   }
+
+  /* ── TOMAS DE REELS ── */
+  .tomas-stats { display:flex; align-items:center; gap:16px; padding:16px 0 24px; flex-wrap:wrap; }
+  .toma-stat-txt { font-size:11px; color:#555; letter-spacing:2px; text-transform:uppercase; }
+  .toma-count-big { font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--gold); line-height:1; }
+  .toma-global-bar-bg { flex:1; min-width:120px; height:3px; background:#1a1a1a; border-radius:2px; overflow:hidden; }
+  .toma-global-bar-fill { height:100%; background:var(--gold); width:0%; transition:width .4s; border-radius:2px; }
+  .toma-pct-txt { font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--gold); }
+
+  .tomas-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:16px; }
+  .toma-reel-card { background:var(--gray); border:1px solid #1e1e1e; overflow:hidden; transition:border-color .3s; }
+  .toma-reel-card:hover { border-color:#333; }
+  .toma-reel-header { padding:16px 20px 12px; border-bottom:1px solid #1a1a1a; }
+  .toma-reel-num { font-size:10px; color:#444; letter-spacing:3px; margin-bottom:4px; }
+  .toma-reel-title { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:1px; color:var(--white); margin-bottom:2px; }
+  .toma-reel-cam { font-size:10px; color:#555; margin-bottom:10px; }
+  .toma-mini-bar-row { display:flex; align-items:center; gap:8px; }
+  .toma-mini-bar-bg { flex:1; height:2px; background:#1a1a1a; border-radius:1px; overflow:hidden; }
+  .toma-mini-bar-fill { height:100%; background:var(--green); width:0%; transition:width .35s; border-radius:1px; }
+  .toma-mini-pct { font-size:10px; color:#555; letter-spacing:1px; white-space:nowrap; }
+
+  .toma-list { list-style:none; padding:12px 20px 16px; }
+  .toma-item { display:flex; align-items:flex-start; gap:10px; padding:7px 0; border-bottom:1px solid #111; }
+  .toma-item:last-child { border-bottom:none; }
+  .toma-cb {
+    width:15px; height:15px; flex-shrink:0; margin-top:2px;
+    appearance:none; -webkit-appearance:none;
+    border:1px solid #333; background:var(--gray2);
+    cursor:pointer; border-radius:2px; position:relative;
+    transition:background .2s, border-color .2s;
+  }
+  .toma-cb:checked { background:var(--green); border-color:var(--green); }
+  .toma-cb:checked::after { content:'✓'; position:absolute; top:-1px; left:1px; font-size:10px; color:#000; font-weight:700; }
+  .toma-txt { font-size:12px; color:#888; line-height:1.5; transition:color .2s; }
+  .toma-cb:checked + .toma-txt { text-decoration:line-through; color:#444; }
+  .toma-star { color:var(--gold); font-size:10px; margin-right:3px; }
 </style>
 </head>
 <body>
@@ -151,6 +187,8 @@
 <nav class="nav">
   <div class="nav-logo">🐺 WOLF DANIELS</div>
   <div class="nav-title">Checklist de Producción</div>
+  <div style="flex:1"></div>
+  <a href="guiones_wolf_daniels.html" style="color:#555;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:0 16px;white-space:nowrap;" onmouseover="this.style.color='#F5C518'" onmouseout="this.style.color='#555'">← GUIONES</a>
   <button class="btn-export" onclick="exportExcel()">⬇ Exportar Excel</button>
 </nav>
 
@@ -514,6 +552,195 @@
   </table>
 </section>
 
+<!-- ===== TOMAS DE REELS ===== -->
+<section class="section" id="tomas">
+  <div class="sec-title"><span class="sec-icon">📷</span> Tomas de Reels — Shot List</div>
+  <div class="tomas-stats">
+    <span class="toma-count-big" id="tomas-done">0</span>
+    <span class="toma-stat-txt">de</span>
+    <span class="toma-count-big" id="tomas-total" style="color:#555">53</span>
+    <span class="toma-stat-txt">tomas capturadas</span>
+    <div class="toma-global-bar-bg"><div class="toma-global-bar-fill" id="tomas-fill"></div></div>
+    <span class="toma-pct-txt" id="tomas-pct">0%</span>
+  </div>
+  <div class="tomas-grid">
+
+    <!-- REEL 01 -->
+    <div class="toma-reel-card">
+      <div class="toma-reel-header">
+        <div class="toma-reel-num">REEL 01</div>
+        <div class="toma-reel-title">Así nace una camisa</div>
+        <div class="toma-reel-cam">Sony III — 60 seg</div>
+        <div class="toma-mini-bar-row">
+          <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
+          <div class="toma-mini-pct">0/10</div>
+        </div>
+      </div>
+      <ul class="toma-list">
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Primer plano: manos tocando tela / textura close-up</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Máquina de coser encendida — corte rápido</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Rollo de tela llegando al taller</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Mesa de corte / tela trazada</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Tijeras cortando tela (plano picado)</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Costura en máquina — travelling lateral</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Planchado de camisa</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Camisa terminada colgada / planchada</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Caja con 30 piezas empacadas (cenital)</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Propietario / logo a cámara — CTA final</span></li>
+      </ul>
+    </div>
+
+    <!-- REEL 02 -->
+    <div class="toma-reel-card">
+      <div class="toma-reel-header">
+        <div class="toma-reel-num">REEL 02</div>
+        <div class="toma-reel-title">Llegó la tela — mira esto</div>
+        <div class="toma-reel-cam">Pocket 3 — 30 seg</div>
+        <div class="toma-mini-bar-row">
+          <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
+          <div class="toma-mini-pct">0/6</div>
+        </div>
+      </div>
+      <ul class="toma-list">
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cajas / rollos llegando al taller</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Abrir rollos — unboxing estilo</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Mano deslizando sobre tela — slow motion</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Distintos colores disponibles extendidos</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Close-up etiqueta o sello de calidad</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Varios colores extendidos — plano final</span></li>
+      </ul>
+    </div>
+
+    <!-- REEL 03 -->
+    <div class="toma-reel-card">
+      <div class="toma-reel-header">
+        <div class="toma-reel-num">REEL 03</div>
+        <div class="toma-reel-title">50 piezas listas para entregar</div>
+        <div class="toma-reel-cam">Sony III — 45 seg</div>
+        <div class="toma-mini-bar-row">
+          <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
+          <div class="toma-mini-pct">0/7</div>
+        </div>
+      </div>
+      <ul class="toma-list">
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt"><span class="toma-star">★</span>ESTRELLA: Cenital 50 camisas dobladas y ordenadas</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Doblar pieza individual</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Meter en bolsa individual</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Meter en caja</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Etiquetar caja</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Caja sellada lista para envío</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Logo / sello Wolf Daniels en la caja</span></li>
+      </ul>
+    </div>
+
+    <!-- REEL 04 -->
+    <div class="toma-reel-card">
+      <div class="toma-reel-header">
+        <div class="toma-reel-num">REEL 04</div>
+        <div class="toma-reel-title">Testimonio — "Pensé que era fraude"</div>
+        <div class="toma-reel-cam">Sony III — 60 seg</div>
+        <div class="toma-mini-bar-row">
+          <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
+          <div class="toma-mini-pct">0/6</div>
+        </div>
+      </div>
+      <ul class="toma-list">
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cliente plano medio — natural (negocio o fábrica de fondo)</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cliente hablando — gancho inicial</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cliente hablando — historia / desarrollo</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cliente hablando — recomendación cierre</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Plano B: negocio del cliente con camisas en display</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Clientes del cliente usando las camisas</span></li>
+      </ul>
+    </div>
+
+    <!-- REEL 05 -->
+    <div class="toma-reel-card">
+      <div class="toma-reel-header">
+        <div class="toma-reel-num">REEL 05</div>
+        <div class="toma-reel-title">3 errores al comprar al mayoreo</div>
+        <div class="toma-reel-cam">Pocket 3 — 45 seg</div>
+        <div class="toma-mini-bar-row">
+          <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
+          <div class="toma-mini-pct">0/6</div>
+        </div>
+      </div>
+      <ul class="toma-list">
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Propietario a cámara — gancho directo</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Tela mala vs buena — comparativa</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Texto animado / plano: ERROR 1 ❌</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Texto animado / plano: ERROR 2 ❌</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Texto animado: ERROR 3 — EL MÁS CARO ❌</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">CTA final en pantalla / propietario</span></li>
+      </ul>
+    </div>
+
+    <!-- REEL 06 -->
+    <div class="toma-reel-card">
+      <div class="toma-reel-header">
+        <div class="toma-reel-num">REEL 06</div>
+        <div class="toma-reel-title">¿Cómo reconocer tela de calidad?</div>
+        <div class="toma-reel-cam">Pocket 3 + Macro — 45 seg</div>
+        <div class="toma-mini-bar-row">
+          <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
+          <div class="toma-mini-pct">0/5</div>
+        </div>
+      </div>
+      <ul class="toma-list">
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Mano apretando tela — close-up extremo</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Tela arrugada (mala) vs sin arruga (buena)</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Tela contra la luz — backlight / transparencia</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Macro de fibras — Pocket 3 modo macro</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">CTA propietario o texto en pantalla</span></li>
+      </ul>
+    </div>
+
+    <!-- REEL 07 -->
+    <div class="toma-reel-card">
+      <div class="toma-reel-header">
+        <div class="toma-reel-num">REEL 07</div>
+        <div class="toma-reel-title">Un día en la fábrica</div>
+        <div class="toma-reel-cam">Sony III + Pocket 3 — 60 seg</div>
+        <div class="toma-mini-bar-row">
+          <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
+          <div class="toma-mini-pct">0/7</div>
+        </div>
+      </div>
+      <ul class="toma-list">
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Llegada a fábrica de mañana — puerta abriéndose</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Luces encendiéndose / máquinas arrancando</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Área de costura — costureras trabajando (Pocket 3 movimiento)</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Control de calidad pieza por pieza</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Área de empaque en acción</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Pedidos listos para salir — cajas apiladas</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Exterior fábrica o propietario — cierre</span></li>
+      </ul>
+    </div>
+
+    <!-- REEL 08 -->
+    <div class="toma-reel-card">
+      <div class="toma-reel-header">
+        <div class="toma-reel-num">REEL 08</div>
+        <div class="toma-reel-title">Desde adentro — la voz de quien lo hace</div>
+        <div class="toma-reel-cam">Sony III — 60 seg</div>
+        <div class="toma-mini-bar-row">
+          <div class="toma-mini-bar-bg"><div class="toma-mini-bar-fill"></div></div>
+          <div class="toma-mini-pct">0/6</div>
+        </div>
+      </div>
+      <ul class="toma-list">
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Trabajador en fábrica — plano presentación (máquinas de fondo)</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Manos del trabajador cortando tela</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Manos cosiendo en máquina</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Trabajador revisando calidad — mirando prenda</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Trabajador levantando camisa terminada a cámara</span></li>
+        <li class="toma-item"><input type="checkbox" class="toma-cb" onchange="updateTomas(this)"><span class="toma-txt">Cierre: trabajador mirando directo al lente — natural</span></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
 <footer>
   <div class="f-logo">🐑 Black Sheep</div>
   <span>CHECKLIST — WOLF DANIELS MAKTUB</span>
@@ -575,6 +802,29 @@
     const pct = Math.round((done / total) * 100);
     document.getElementById('prog-fill').style.width = pct + '%';
     document.getElementById('prog-pct').textContent = pct + '%';
+  }
+
+  // ── Actualizar tomas ───────────────────────────────────────────────────────
+  function updateTomas(cb) {
+    // Mini barra del card
+    const card = cb.closest('.toma-reel-card');
+    const allCbs = card.querySelectorAll('.toma-cb');
+    const doneCbs = card.querySelectorAll('.toma-cb:checked');
+    const total = allCbs.length;
+    const done = doneCbs.length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    card.querySelector('.toma-mini-bar-fill').style.width = pct + '%';
+    card.querySelector('.toma-mini-pct').textContent = done + '/' + total;
+
+    // Global tomas
+    const allTomas = document.querySelectorAll('.toma-cb');
+    const doneTomas = document.querySelectorAll('.toma-cb:checked');
+    const gTotal = allTomas.length;
+    const gDone = doneTomas.length;
+    document.getElementById('tomas-done').textContent = gDone;
+    document.getElementById('tomas-total').textContent = gTotal;
+    document.getElementById('tomas-fill').style.width = (gTotal ? Math.round((gDone/gTotal)*100) : 0) + '%';
+    document.getElementById('tomas-pct').textContent = (gTotal ? Math.round((gDone/gTotal)*100) : 0) + '%';
   }
 
   // ── Exportar a Excel ───────────────────────────────────────────────────────
@@ -652,11 +902,37 @@
       XLSX.utils.book_append_sheet(wb, ws2, sec.label);
     });
 
+    // ── Hoja Tomas de Reels ───────────────────────────────────────────
+    const tomaRows = [
+      ['#', 'REEL', 'TOMA', 'DESCRIPCIÓN', 'CAPTURADA']
+    ];
+    document.querySelectorAll('.toma-reel-card').forEach(card => {
+      const reelNum  = card.querySelector('.toma-reel-num').textContent.trim();
+      const reelTit  = card.querySelector('.toma-reel-title').textContent.trim();
+      tomaRows.push(['', '── ' + reelNum + ' — ' + reelTit + ' ──', '', '', '']);
+      card.querySelectorAll('.toma-item').forEach((item, i) => {
+        const checked = item.querySelector('.toma-cb').checked;
+        const txt = item.querySelector('.toma-txt').textContent.trim();
+        tomaRows.push([reelNum, reelTit, 'TOMA ' + (i+1), txt, checked ? '✓' : '']);
+      });
+      tomaRows.push([]);
+    });
+    const wsTomas = XLSX.utils.aoa_to_sheet(tomaRows);
+    wsTomas['!cols'] = [{wch:10},{wch:32},{wch:9},{wch:55},{wch:10}];
+    XLSX.utils.book_append_sheet(wb, wsTomas, 'Tomas de Reels');
+
     XLSX.writeFile(wb, 'WolfDaniels_Checklist_' + fecha.replace(/\//g, '-') + '.xlsx');
   }
 
   // Inicializar
   updateStats();
+  // Init toma bars
+  document.querySelectorAll('.toma-reel-card').forEach(card => {
+    const cbs = card.querySelectorAll('.toma-cb');
+    card.querySelector('.toma-mini-pct').textContent = '0/' + cbs.length;
+  });
+  const gTotal = document.querySelectorAll('.toma-cb').length;
+  document.getElementById('tomas-total').textContent = gTotal;
 </script>
 </body>
 </html>

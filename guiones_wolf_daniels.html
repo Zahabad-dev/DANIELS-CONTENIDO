@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guiones de Contenido — Wolf Daniels Maktub</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <style>
   :root {
     --black: #0a0a0a;
@@ -68,6 +69,19 @@
     flex-shrink: 0;
   }
   .nav a:hover { color: var(--gold); }
+
+  .nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; padding: 8px 18px;
+    border: none; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    transition: opacity 0.2s; text-decoration: none;
+  }
+  .nav-btn-outline { background: transparent; color: var(--gold); border: 1px solid #333; }
+  .nav-btn-outline:hover { border-color: var(--gold); }
+  .nav-btn-solid { background: var(--gold); color: var(--black); }
+  .nav-btn-solid:hover { opacity: 0.85; }
 
   /* HERO */
   .hero {
@@ -730,6 +744,9 @@
   <a href="#reels">8 REELS</a>
   <a href="#posts">8 BANNERS</a>
   <a href="#stories">12 HISTORIAS</a>
+  <div style="flex:1"></div>
+  <a href="checklist_wolf_daniels.html" class="nav-btn nav-btn-outline">📋 CHECKLIST</a>
+  <button class="nav-btn nav-btn-solid" onclick="exportGuiones()">⬇ EXPORTAR</button>
 </nav>
 
 <!-- HERO -->
@@ -1792,6 +1809,138 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
   <span>PLAN DE CONTENIDO — WOLF DANIELS MAKTUB</span>
   <span>BLACKSHEEPAGENCIA.COM</span>
 </footer>
+
+<script>
+function exportGuiones() {
+  const wb = XLSX.utils.book_new();
+  const fecha = new Date().toLocaleDateString('es-MX');
+
+  // ── HOJA RESUMEN ──────────────────────────────────────────────────
+  const resumen = [
+    ['Wolf Daniels Maktub — Plan de Contenido Mensual'],
+    ['Generado:', fecha],
+    [],
+    ['#', 'TIPO', 'TÍTULO', 'PILAR', 'DURACIÓN / FORMATO', 'CÁMARA / HERRAMIENTA'],
+    ['', '─── REELS ───', '', '', '', ''],
+    ['REEL 01','Reel','Así nace una camisa','Transparencia','60 seg','Sony III'],
+    ['REEL 02','Reel','Llegó la tela — mira esto','Transparencia','30 seg','Pocket 3'],
+    ['REEL 03','Reel','50 piezas listas para entregar','Transparencia','45 seg','Sony III'],
+    ['REEL 04','Reel','Testimonio — "Pensé que era fraude"','Prueba Social','60 seg','Sony III'],
+    ['REEL 05','Reel','3 errores al comprar ropa al mayoreo','Autoridad','45 seg','Pocket 3'],
+    ['REEL 06','Reel','¿Cómo reconocer tela de calidad?','Autoridad','45 seg','Pocket 3 + Macro'],
+    ['REEL 07','Reel','Un día en la fábrica','Transparencia','60 seg','Sony III + Pocket 3'],
+    ['REEL 08','Reel','Desde adentro — la voz de quien lo hace','Institucional','60 seg','Sony III'],
+    [],
+    ['', '─── BANNERS / POSTS ───', '', '', '', ''],
+    ['BANNER 01','Banner','Empieza desde 30','Transparencia','Estático','—'],
+    ['BANNER 02','Banner','Tela importada','Autoridad','Estático','—'],
+    ['BANNER 03','Banner','Testimonio en gráfica','Prueba Social','Estático','—'],
+    ['BANNER 04','Banner','Dato de autoridad','Autoridad','Carrusel 3 slides','—'],
+    ['BANNER 05','Banner','Fabricante vs intermediario','Autoridad','Carrusel','—'],
+    ['BANNER 06','Banner','¿Cómo comprar? Paso a paso','Transparencia','Carrusel 5 slides','—'],
+    ['BANNER 07','Banner','Muestra gratis','Prueba Social','Estático','—'],
+    ['BANNER 08','Banner','Preguntas frecuentes','Autoridad','Carrusel Q&A','—'],
+    [],
+    ['', '─── HISTORIAS ───', '', '', '', ''],
+    ['HISTORIA 01','Historia','Buenos días desde la fábrica','Transparencia','Semana 1 — Video 15s','Pocket 3'],
+    ['HISTORIA 02','Historia','Encuesta: ¿Cuántas piezas necesitas?','Interacción','Semana 1 — Encuesta','—'],
+    ['HISTORIA 03','Historia','Así se ve la tela de cerca','Autoridad','Semana 1 — Video macro','Pocket 3 Macro'],
+    ['HISTORIA 04','Historia','Pregunta abierta','Interacción','Semana 2 — Sticker preguntas','—'],
+    ['HISTORIA 05','Historia','Pedido saliendo hoy','Prueba Social','Semana 2 — Video real','Pocket 3'],
+    ['HISTORIA 06','Historia','Verdadero o falso','Autoridad','Semana 2 — Quiz V/F','—'],
+    ['HISTORIA 07','Historia','¿Qué modelo te gusta más?','Interacción','Semana 3 — Encuesta','—'],
+    ['HISTORIA 08','Historia','Respuesta a objeción real','Prueba Social','Semana 3 — Texto + voz','DJI Mic 3'],
+    ['HISTORIA 09','Historia','Detrás de cámaras del reel','Transparencia','Semana 3 — Video BTS','Pocket 3'],
+    ['HISTORIA 10','Historia','En 15 seg — Del rollo al envío','Transparencia','Semana 4 — Timelapse','Sony III + Pocket 3'],
+    ['HISTORIA 11','Historia','Resumen del mes','Autoridad','Semana 4 — Texto','—'],
+    ['HISTORIA 12','Historia','CTA directo a WhatsApp','Prueba Social','Semana 4 — Conversión','—'],
+  ];
+  const wsRes = XLSX.utils.aoa_to_sheet(resumen);
+  wsRes['!cols'] = [{wch:12},{wch:10},{wch:46},{wch:16},{wch:22},{wch:22}];
+  XLSX.utils.book_append_sheet(wb, wsRes, 'Resumen');
+
+  // ── HOJA TOMAS DE REELS ───────────────────────────────────────────
+  const tomas = [
+    ['Wolf Daniels Maktub — Shot List / Tomas de Reels'],
+    ['Generado:', fecha],
+    [],
+    ['REEL','TÍTULO','CÁMARA','TOMA #','DESCRIPCIÓN DE LA TOMA','CAPTURADA'],
+    ['','─── REEL 01 — Así nace una camisa ───','Sony III','','',''],
+    ['REEL 01','Así nace una camisa','Sony III','TOMA 1','Primer plano: manos tocando tela recién llegada / textura close-up',''],
+    ['REEL 01','Así nace una camisa','Sony III','TOMA 2','Máquina de coser encendida — corte rápido de entrada',''],
+    ['REEL 01','Así nace una camisa','Sony III','TOMA 3','Rollo de tela llegando al taller',''],
+    ['REEL 01','Así nace una camisa','Sony III','TOMA 4','Mesa de corte / tela trazada antes de cortar',''],
+    ['REEL 01','Así nace una camisa','Sony III','TOMA 5','Tijeras cortando tela (plano picado)',''],
+    ['REEL 01','Así nace una camisa','Sony III','TOMA 6','Costura en máquina — travelling lateral',''],
+    ['REEL 01','Así nace una camisa','Sony III','TOMA 7','Planchado de camisa',''],
+    ['REEL 01','Así nace una camisa','Sony III','TOMA 8','Camisa terminada colgada / planchada',''],
+    ['REEL 01','Así nace una camisa','Sony III','TOMA 9','Caja con 30 piezas empacadas (cenital)',''],
+    ['REEL 01','Así nace una camisa','Sony III','TOMA 10','Propietario o logo a cámara — CTA final',''],
+    [],
+    ['','─── REEL 02 — Llegó la tela ───','Pocket 3','','',''],
+    ['REEL 02','Llegó la tela','Pocket 3','TOMA 1','Cajas / rollos llegando al taller',''],
+    ['REEL 02','Llegó la tela','Pocket 3','TOMA 2','Abrir rollos — unboxing estilo',''],
+    ['REEL 02','Llegó la tela','Pocket 3','TOMA 3','Mano deslizando sobre tela — slow motion',''],
+    ['REEL 02','Llegó la tela','Pocket 3','TOMA 4','Distintos colores disponibles extendidos',''],
+    ['REEL 02','Llegó la tela','Pocket 3','TOMA 5','Close-up etiqueta o sello de calidad',''],
+    ['REEL 02','Llegó la tela','Pocket 3','TOMA 6','Varios colores extendidos — plano final',''],
+    [],
+    ['','─── REEL 03 — 50 piezas listas ───','Sony III','','',''],
+    ['REEL 03','50 piezas listas','Sony III','TOMA 1','★ ESTRELLA: Cenital de 50 camisas dobladas y ordenadas',''],
+    ['REEL 03','50 piezas listas','Sony III','TOMA 2','Doblar pieza individual',''],
+    ['REEL 03','50 piezas listas','Sony III','TOMA 3','Meter en bolsa individual',''],
+    ['REEL 03','50 piezas listas','Sony III','TOMA 4','Meter en caja',''],
+    ['REEL 03','50 piezas listas','Sony III','TOMA 5','Etiquetar caja',''],
+    ['REEL 03','50 piezas listas','Sony III','TOMA 6','Caja sellada lista para envío',''],
+    ['REEL 03','50 piezas listas','Sony III','TOMA 7','Logo / sello Wolf Daniels en la caja',''],
+    [],
+    ['','─── REEL 04 — Testimonio ───','Sony III','','',''],
+    ['REEL 04','Testimonio','Sony III','TOMA 1','Cliente plano medio — natural (negocio o fábrica de fondo)',''],
+    ['REEL 04','Testimonio','Sony III','TOMA 2','Cliente hablando — gancho inicial',''],
+    ['REEL 04','Testimonio','Sony III','TOMA 3','Cliente hablando — historia / desarrollo',''],
+    ['REEL 04','Testimonio','Sony III','TOMA 4','Cliente hablando — recomendación cierre',''],
+    ['REEL 04','Testimonio','Sony III','TOMA 5','Plano B: negocio del cliente con camisas en display',''],
+    ['REEL 04','Testimonio','Sony III','TOMA 6','Clientes del cliente usando las camisas',''],
+    [],
+    ['','─── REEL 05 — 3 errores ───','Pocket 3','','',''],
+    ['REEL 05','3 errores al mayoreo','Pocket 3','TOMA 1','Propietario a cámara — gancho directo',''],
+    ['REEL 05','3 errores al mayoreo','Pocket 3','TOMA 2','Tela mala vs buena — comparativa lado a lado',''],
+    ['REEL 05','3 errores al mayoreo','Pocket 3','TOMA 3','Texto animado: ERROR 1 ❌',''],
+    ['REEL 05','3 errores al mayoreo','Pocket 3','TOMA 4','Texto animado: ERROR 2 ❌',''],
+    ['REEL 05','3 errores al mayoreo','Pocket 3','TOMA 5','Texto animado: ERROR 3 — EL MÁS CARO ❌',''],
+    ['REEL 05','3 errores al mayoreo','Pocket 3','TOMA 6','CTA final en pantalla / propietario',''],
+    [],
+    ['','─── REEL 06 — Reconocer tela ───','Pocket 3 + Macro','','',''],
+    ['REEL 06','Reconocer tela de calidad','Pocket 3 + Macro','TOMA 1','Mano apretando tela — close-up extremo',''],
+    ['REEL 06','Reconocer tela de calidad','Pocket 3 + Macro','TOMA 2','Tela arrugada (mala) vs sin arruga (buena calidad)',''],
+    ['REEL 06','Reconocer tela de calidad','Pocket 3 + Macro','TOMA 3','Tela contra la luz — backlight / transparencia',''],
+    ['REEL 06','Reconocer tela de calidad','Pocket 3 + Macro','TOMA 4','Macro de fibras — Pocket 3 modo macro',''],
+    ['REEL 06','Reconocer tela de calidad','Pocket 3 + Macro','TOMA 5','CTA propietario o texto en pantalla',''],
+    [],
+    ['','─── REEL 07 — Un día en la fábrica ───','Sony III + Pocket 3','','',''],
+    ['REEL 07','Un día en la fábrica','Sony III + Pocket 3','TOMA 1','Llegada a fábrica de mañana — puerta abriéndose',''],
+    ['REEL 07','Un día en la fábrica','Sony III + Pocket 3','TOMA 2','Luces encendiéndose / máquinas arrancando',''],
+    ['REEL 07','Un día en la fábrica','Sony III + Pocket 3','TOMA 3','Área de costura — costureras trabajando (Pocket 3 movimiento)',''],
+    ['REEL 07','Un día en la fábrica','Sony III + Pocket 3','TOMA 4','Control de calidad pieza por pieza',''],
+    ['REEL 07','Un día en la fábrica','Sony III + Pocket 3','TOMA 5','Área de empaque en acción',''],
+    ['REEL 07','Un día en la fábrica','Sony III + Pocket 3','TOMA 6','Pedidos listos para salir — cajas apiladas',''],
+    ['REEL 07','Un día en la fábrica','Sony III + Pocket 3','TOMA 7','Exterior fábrica o propietario — cierre',''],
+    [],
+    ['','─── REEL 08 — Desde adentro ───','Sony III','','',''],
+    ['REEL 08','Desde adentro','Sony III','TOMA 1','Trabajador en fábrica — plano presentación (máquinas de fondo)',''],
+    ['REEL 08','Desde adentro','Sony III','TOMA 2','Manos del trabajador cortando tela',''],
+    ['REEL 08','Desde adentro','Sony III','TOMA 3','Manos cosiendo en máquina',''],
+    ['REEL 08','Desde adentro','Sony III','TOMA 4','Trabajador revisando calidad — mirando prenda',''],
+    ['REEL 08','Desde adentro','Sony III','TOMA 5','Trabajador levantando camisa terminada a cámara',''],
+    ['REEL 08','Desde adentro','Sony III','TOMA 6','Cierre: trabajador mirando directo al lente — natural',''],
+  ];
+  const wsTomas = XLSX.utils.aoa_to_sheet(tomas);
+  wsTomas['!cols'] = [{wch:10},{wch:30},{wch:20},{wch:10},{wch:55},{wch:12}];
+  XLSX.utils.book_append_sheet(wb, wsTomas, 'Tomas de Reels');
+
+  XLSX.writeFile(wb, 'WolfDaniels_Guiones_' + fecha.replace(/\//g,'-') + '.xlsx');
+}
+</script>
 
 </body>
 </html>
