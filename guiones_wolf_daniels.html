@@ -699,6 +699,27 @@
   .vr-img-wrap:hover img { opacity:1; filter:grayscale(0%); }
   .vr-img-caption { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,.85)); padding:14px 7px 5px; font-size:9px; color:rgba(255,255,255,.55); letter-spacing:1px; }
   .vr-note { font-size:11px; color:#555; font-style:italic; line-height:1.6; margin-top:6px; }
+
+  /* POST VISUAL REF */
+  .post-visual-ref { margin-top:14px; border-top:1px solid #1a1a1a; padding-top:12px; }
+  .pvr-label { font-size:9px; letter-spacing:2px; color:#444; text-transform:uppercase; margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+  .pvr-label::after { content:''; flex:1; height:1px; background:#1a1a1a; }
+  .pvr-imgs { display:flex; gap:5px; }
+  .pvr-img-wrap { position:relative; overflow:hidden; flex:1; background:#111; }
+  .pvr-img-wrap img { width:100%; height:78px; object-fit:cover; display:block; opacity:.7; transition:opacity .3s; filter:grayscale(15%); }
+  .pvr-img-wrap:hover img { opacity:1; filter:grayscale(0%); }
+  .pvr-img-caption { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,.85)); padding:10px 5px 4px; font-size:8px; color:rgba(255,255,255,.5); letter-spacing:.5px; }
+  .pvr-note { margin-top:6px; font-size:10px; color:#555; font-style:italic; line-height:1.5; }
+
+  /* STORY VISUAL REF */
+  .story-visual-ref { border-top:1px solid #1a1a1a; padding:8px 12px 10px; background:#0f0f0f; }
+  .svr-label { font-size:8px; letter-spacing:2px; color:#444; text-transform:uppercase; margin-bottom:6px; }
+  .svr-imgs { display:flex; gap:4px; }
+  .svr-img-wrap { position:relative; overflow:hidden; flex:1; background:#111; }
+  .svr-img-wrap img { width:100%; height:60px; object-fit:cover; display:block; opacity:.7; filter:grayscale(15%); transition:opacity .3s; }
+  .svr-img-wrap:hover img { opacity:1; filter:grayscale(0%); }
+  .svr-img-caption { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,.85)); padding:8px 4px 3px; font-size:7px; color:rgba(255,255,255,.45); letter-spacing:.5px; }
+  .svr-note { margin-top:5px; font-size:9px; color:#555; font-style:italic; line-height:1.4; }
 </style>
 </head>
 <body>
@@ -1313,6 +1334,15 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="post-headline">"30 piezas. Sin mínimos imposibles. Sin intermediarios."</div>
         <div class="post-body-text">Subtexto: Conoce nuestro catálogo y cotiza hoy.</div>
         <div class="post-design-note">🎨 Diseño: Número "30" grande en centro. Fondo negro/oscuro. Acento en dorado o color de marca. Logo Wolf Daniels esquina. CTA: "WhatsApp en bio".</div>
+        <div class="post-visual-ref">
+          <div class="pvr-label">📸 Fotos sugeridas</div>
+          <div class="pvr-imgs">
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Cenital — prendas ordenadas</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Camisa fondo oscuro</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/31321016/pexels-photo-31321016.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Conteo 30 piezas</div></div>
+          </div>
+          <p class="pvr-note">📷 Toma cenital de 30 piezas dobladas y alineadas. "30" protagonista en tipografía XXL. Fondo negro, luz lateral cálida.</p>
+        </div>
       </div>
     </div>
 
@@ -1325,6 +1355,15 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="post-headline">"No toda tela es igual. La nuestra viene de donde sí importa."</div>
         <div class="post-body-text">Subtexto: Importamos personalmente para garantizar cada pieza.</div>
         <div class="post-design-note">🎨 Diseño: Foto de close-up de tela de fondo. Tipografía bold encima. Datos: % de algodón o composición si aplica. Tono: premium, confiable.</div>
+        <div class="post-visual-ref">
+          <div class="pvr-label">📸 Fotos sugeridas</div>
+          <div class="pvr-imgs">
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/5908326/pexels-photo-5908326.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Textura tela — close-up</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/6634454/pexels-photo-6634454.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Colores disponibles</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/6851135/pexels-photo-6851135.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Mano sobre tela</div></div>
+          </div>
+          <p class="pvr-note">📷 Macro extremo de fibras. Luz lateral para resaltar textura. Sin filtros — el color real es el argumento de venta.</p>
+        </div>
       </div>
     </div>
 
@@ -1337,6 +1376,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="post-headline">"'El primer pedido lo dudé. Ya llevo 5.' — Cliente real"</div>
         <div class="post-body-text">Reseña real de cliente con su nombre y ciudad. Foto del cliente si autoriza.</div>
         <div class="post-design-note">🎨 Diseño: Fondo oscuro, texto grande con comillas. Nombre del cliente abajo, ciudad. Foto circular si tiene. Estrellas 5/5.</div>
+        <div class="post-visual-ref">
+          <div class="pvr-label">📸 Fotos sugeridas</div>
+          <div class="pvr-imgs">
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/31112215/pexels-photo-31112215.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Cliente con camisa puesta</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Producto — camisa</div></div>
+          </div>
+          <p class="pvr-note">📷 Foto del cliente usando la camisa, expresión auténtica. Si no hay foto de cliente, usar close-up del producto con la reseña superpuesta en diseño.</p>
+        </div>
       </div>
     </div>
 
@@ -1349,6 +1396,15 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="post-headline">"[X] años fabricando. [X,000] piezas entregadas. 0 fraudes."</div>
         <div class="post-body-text">Números reales de la empresa. Si no hay exactos, usar aproximados honestos.</div>
         <div class="post-design-note">🎨 Diseño: Carrusel de 3 slides — cada número en una diapositiva. Impacto visual de dato único. Tipografía XXL.</div>
+        <div class="post-visual-ref">
+          <div class="pvr-label">📸 Fotos sugeridas</div>
+          <div class="pvr-imgs">
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/31031031/pexels-photo-31031031.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Fábrica en plena producción</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/4492077/pexels-photo-4492077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Costureras trabajando</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Volumen de prendas</div></div>
+          </div>
+          <p class="pvr-note">📷 Panorámica de fábrica activa. Cuantas más personas y máquinas visibles, mayor impacto. Toma amplia, luz natural preferida.</p>
+        </div>
       </div>
     </div>
 
@@ -1361,6 +1417,15 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="post-headline">"¿Comprar al fabricante o al intermediario? La diferencia te va a sorprender."</div>
         <div class="post-body-text">Carrusel comparando: precio, tiempo de respuesta, personalización, calidad, confianza.</div>
         <div class="post-design-note">🎨 Diseño: Tabla comparativa visual. Columna izquierda "Intermediario" ❌ vs columna derecha "Wolf Daniels" ✅. Verde/rojo o claro/oscuro.</div>
+        <div class="post-visual-ref">
+          <div class="pvr-label">📸 Fotos sugeridas</div>
+          <div class="pvr-imgs">
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/4492077/pexels-photo-4492077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Fábrica propia — lado Wolf</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Producto calidad</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/31031031/pexels-photo-31031031.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Proceso en planta</div></div>
+          </div>
+          <p class="pvr-note">📷 Imagen de la fábrica real para columna "nosotros". Split screen muy efectivo. El contraste visual hace el trabajo de convencer.</p>
+        </div>
       </div>
     </div>
 
@@ -1373,6 +1438,15 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="post-headline">"Comprar al mayoreo con nosotros es así de simple."</div>
         <div class="post-body-text">Paso 1: Contáctanos / Paso 2: Elige modelos y cantidad / Paso 3: Recibe muestra / Paso 4: Confirma pedido / Paso 5: Recibe en tu negocio.</div>
         <div class="post-design-note">🎨 Diseño: Carrusel — cada paso en un slide con número grande e ícono. Limpio, simple, que desmitifique el proceso.</div>
+        <div class="post-visual-ref">
+          <div class="pvr-label">📸 Fotos sugeridas</div>
+          <div class="pvr-imgs">
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Camisa terminada</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Prendas empacadas</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/31321016/pexels-photo-31321016.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Revisión y entrega</div></div>
+          </div>
+          <p class="pvr-note">📷 Iconos simples + foto de camisa terminada. Paleta limpia negro/dorado. El proceso debe verse fácil — eso es lo que convierte al indeciso.</p>
+        </div>
       </div>
     </div>
 
@@ -1385,6 +1459,15 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="post-headline">"Antes de comprar, toca. Te mandamos muestra gratis."</div>
         <div class="post-body-text">Oferta de muestra sin costo para primer pedido. Desmonta la objeción principal de desconfianza.</div>
         <div class="post-design-note">🎨 Diseño: Destaca "GRATIS" en color de acento. Imagen de camisa con fondo limpio. CTA grande: "Solicita tu muestra ahora".</div>
+        <div class="post-visual-ref">
+          <div class="pvr-label">📸 Fotos sugeridas</div>
+          <div class="pvr-imgs">
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Camisa primer plano</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/6851135/pexels-photo-6851135.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Muestra de tela</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/31321016/pexels-photo-31321016.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Revisión de calidad</div></div>
+          </div>
+          <p class="pvr-note">📷 Camisa sobre fondo negro limpio. "GRATIS" en dorado XXL. Flecha o CTA grande hacia abajo. La objeción 1 de cualquier comprador mayorista es el riesgo — esto la elimina.</p>
+        </div>
       </div>
     </div>
 
@@ -1397,6 +1480,15 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="post-headline">"Las 5 preguntas que todos hacen antes del primer pedido."</div>
         <div class="post-body-text">¿Mínimo de piezas? / ¿Cómo sé que no es fraude? / ¿Hacen envíos? / ¿Puedo personalizar? / ¿Aceptan pagos en partes?</div>
         <div class="post-design-note">🎨 Diseño: Carrusel — pregunta en slide 1, respuesta en slide 2 (alternado). Formato Q&A visual. Genera guardados y compartidos.</div>
+        <div class="post-visual-ref">
+          <div class="pvr-label">📸 Fotos sugeridas</div>
+          <div class="pvr-imgs">
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/31112215/pexels-photo-31112215.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Propietario — "buena pregunta"</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/4492077/pexels-photo-4492077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Fábrica — prueba real</div></div>
+            <div class="pvr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="pvr-img-caption">Producto</div></div>
+          </div>
+          <p class="pvr-note">📷 El "?" como elemento gráfico protagonista en cada slide. Fondo oscuro, tipografía grande y clara. Este carrusel genera muchos guardados — optimizar para saves.</p>
+        </div>
       </div>
     </div>
 
@@ -1428,6 +1520,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-desc">Clip crudo de la fábrica abriendo. Texto: "Otro día de trabajo. ¿Tu pedido ya está en camino?"</div>
         <div class="story-cta">→ CTA: "Escríbenos"</div>
       </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/31031031/pexels-photo-31031031.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Fábrica abriendo</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/4492077/pexels-photo-4492077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Costureras llegando</div></div>
+        </div>
+        <p class="svr-note">🌅 Grabar al llegar. Luz de mañana, arranque real. Vertical 9:16.</p>
+      </div>
     </div>
 
     <div class="story-card">
@@ -1442,6 +1542,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-type">Interacción • Encuesta</div>
         <div class="story-desc">Opciones: 30–50 / 50–100 / 100–300 / +300 piezas. Genera datos reales de demanda y engagement.</div>
         <div class="story-cta">→ Responder encuesta</div>
+      </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Prendas apiladas</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/31321016/pexels-photo-31321016.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Conteo de piezas</div></div>
+        </div>
+        <p class="svr-note">📊 Pila de prendas en frame. Sticker de encuesta centrado arriba. Genera datos reales de demanda.</p>
       </div>
     </div>
 
@@ -1458,6 +1566,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-desc">Clip en slow motion de tela siendo tocada. Texto: "¿Notas la calidad? Esto es lo que recibe tu cliente."</div>
         <div class="story-cta">→ Desliza para ver más</div>
       </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/5908326/pexels-photo-5908326.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Textura macro</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/6634454/pexels-photo-6634454.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Fibras en detalle</div></div>
+        </div>
+        <p class="svr-note">🔍 Pocket 3 modo macro. Slow motion al tocar la tela. Añadir mano en cámara.</p>
+      </div>
     </div>
 
     <div class="story-card">
@@ -1472,6 +1588,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-type">Interacción • Engagement</div>
         <div class="story-desc">"¿Qué te ha impedido comprar ropa al mayoreo antes?" — Las respuestas se usan en contenido futuro.</div>
         <div class="story-cta">→ Responder</div>
+      </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/31112215/pexels-photo-31112215.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Propietario — fondo limpio</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Camisa en mano</div></div>
+        </div>
+        <p class="svr-note">🗣️ Propietario natural con sticker de pregunta. Fondo simple, luz frontal suave.</p>
       </div>
     </div>
 
@@ -1488,6 +1612,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-desc">Mostrar cajas selladas listas para envío. Texto: "Este pedido va a [ciudad]. ¿El tuyo cuándo?"</div>
         <div class="story-cta">→ "Cotiza ahora"</div>
       </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Prendas listas</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/31321016/pexels-photo-31321016.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Cajas empacadas</div></div>
+        </div>
+        <p class="svr-note">📦 Cajas o bolsas selladas en primer plano. Mostrar logo o etiqueta si hay. Video en tiempo real, sin cortes.</p>
+      </div>
     </div>
 
     <div class="story-card">
@@ -1502,6 +1634,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-type">Autoridad • Interacción</div>
         <div class="story-desc">"¿Verdad o mito? 'Comprar al mayoreo siempre es riesgo de fraude'." — Sticker V/F. Respuesta en siguiente story.</div>
         <div class="story-cta">→ Votar</div>
+      </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/31112215/pexels-photo-31112215.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Propietario — expresión</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Producto — camisa</div></div>
+        </div>
+        <p class="svr-note">❓ Propietario con cara de "depende". Sticker V/F centrado. Fondo oscuro, tipografía grande.</p>
       </div>
     </div>
 
@@ -1518,6 +1658,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-desc">Mostrar 2 modelos de camisa lado a lado. Encuesta: "¿Cuál pides primero?" Genera intención de compra.</div>
         <div class="story-cta">→ Votar</div>
       </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Camisa — modelo A</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/6634454/pexels-photo-6634454.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Colores — modelo B</div></div>
+        </div>
+        <p class="svr-note">👕 Dos camisas side by side. Split screen. Encuesta debajo de cada modelo para voto directo.</p>
+      </div>
     </div>
 
     <div class="story-card">
@@ -1532,6 +1680,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-type">Confianza • Texto</div>
         <div class="story-desc">"Nos preguntan mucho: ¿cómo sé que no me van a estafar? Aquí la respuesta honesta:" — Listar: fábrica visible, muestras gratis, clientes reales.</div>
         <div class="story-cta">→ "Escríbenos y velo tú mismo"</div>
+      </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/31112215/pexels-photo-31112215.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Propietario a cámara</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/4492077/pexels-photo-4492077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Fábrica al fondo</div></div>
+        </div>
+        <p class="svr-note">🎤 Propietario hablando directo. Puntos listados en pantalla. DJI Mic 3 en solapa. Fábrica visible al fondo.</p>
       </div>
     </div>
 
@@ -1548,20 +1704,36 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-desc">Mostrar cómo se grabó uno de los reels. Humaniza la marca y muestra que hay producción real detrás.</div>
         <div class="story-cta">→ Ver el reel completo</div>
       </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/31031031/pexels-photo-31031031.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Set de grabación</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/4492077/pexels-photo-4492077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Fábrica — producción</div></div>
+        </div>
+        <p class="svr-note">🎬 Grabar a quien está grabando. Mostrar las cámaras y el set. Humaniza el contenido y genera curiosidad.</p>
+      </div>
     </div>
 
     <div class="story-card">
       <div class="story-screen story-s10">
         <div class="story-day">SEMANA 4</div>
         <div class="story-num">10</div>
-        <div class="story-emoji">📍</div>
-        <div class="story-headline">UBICACIÓN DE LA FÁBRICA</div>
-        <div class="story-sub">Imagen + ubicación en mapa</div>
+        <div class="story-emoji">⏱️</div>
+        <div class="story-headline">EN 15 SEG — DEL ROLLO AL ENVÍO</div>
+        <div class="story-sub">Timelapse del proceso completo</div>
       </div>
       <div class="story-info">
-        <div class="story-type">Confianza • Foto</div>
-        <div class="story-desc">Foto exterior de la fábrica con dirección o ciudad. Sticker de ubicación de Instagram. "Aquí existimos, aquí trabajamos."</div>
-        <div class="story-cta">→ Ver ubicación</div>
+        <div class="story-type">Transparencia • Video</div>
+        <div class="story-desc">Compilación relámpago: tela → corte → costura → plancha → empaque → envío. 15 seg. "Esto es lo que pasa antes de que llegue tu pedido."</div>
+        <div class="story-cta">→ Ver el proceso completo</div>
+      </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/4492077/pexels-photo-4492077.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Costura — proceso</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/31031031/pexels-photo-31031031.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Fábrica activa</div></div>
+        </div>
+        <p class="svr-note">⚡ 2–3 seg por etapa. Música rápida tipo timelapse. Cortes sincronizados con el beat.</p>
       </div>
     </div>
 
@@ -1578,6 +1750,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-desc">"Este mes: [X] pedidos entregados, [X] clientes nuevos, [X] piezas fabricadas." Genera percepción de empresa activa y confiable.</div>
         <div class="story-cta">→ "Sé parte del siguiente mes"</div>
       </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/31321016/pexels-photo-31321016.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Revisión — mes terminado</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Volumen de prendas</div></div>
+        </div>
+        <p class="svr-note">📊 Datos reales del mes: números grandes en dorado sobre fondo negro. Genera percepción de empresa muy activa.</p>
+      </div>
     </div>
 
     <div class="story-card">
@@ -1592,6 +1772,14 @@ Cuando nos compras, sabes exactamente quién lo hizo. 📲
         <div class="story-type">Conversión • CTA</div>
         <div class="story-desc">"Si llegaste hasta aquí y aún no has cotizado, hoy es el día. Escríbenos, sin compromiso." Link directo a WhatsApp.</div>
         <div class="story-cta">→ Link WhatsApp</div>
+      </div>
+      <div class="story-visual-ref">
+        <div class="svr-label">📸 Tomas</div>
+        <div class="svr-imgs">
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/5746087/pexels-photo-5746087.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Camisa en mano</div></div>
+          <div class="svr-img-wrap"><img src="https://images.pexels.com/photos/31112215/pexels-photo-31112215.jpeg?auto=compress&cs=tinysrgb&w=400" alt="" loading="lazy"><div class="svr-img-caption">Propietario directo</div></div>
+        </div>
+        <p class="svr-note">📲 Propietario mirando a cámara, camisa en mano. Botón de WhatsApp bien visible. Esta historia convierte — urgencia visual clara.</p>
       </div>
     </div>
 
